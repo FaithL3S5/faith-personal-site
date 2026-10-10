@@ -1,0 +1,41 @@
+.typer {
+  overflow-wrap: anywhere;
+}
+
+.accessibleValue {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.cursor {
+  display: inline-block;
+  width: 0.55em;
+  height: 0.72em;
+  margin-left: 0.08em;
+  background: var(--crimson);
+  vertical-align: baseline;
+}
+
+.blinking {
+  animation: blink 1s steps(1, end) infinite;
+}
+
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .blinking {
+    animation: none;
+  }
+}

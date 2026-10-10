@@ -1,4 +1,4 @@
-import { render } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import { renderToString } from "react-dom/server";
 import { describe, expect, it } from "vitest";
 import { notFoundCopy } from "@/content/errors";
@@ -9,7 +9,9 @@ describe("RequestedPath", () => {
     window.history.pushState({}, "", "/<script>alert(1)</script>");
     const { container } = render(<RequestedPath />);
 
-    expect(container.textContent).toBe("/%3Cscript%3Ealert(1)%3C/script%3E");
+    expect(
+      screen.getByText("/%3Cscript%3Ealert(1)%3C/script%3E", { ignore: "[aria-hidden='true']" }),
+    ).toBeTruthy();
     expect(container.querySelector("script")).toBeNull();
     window.history.pushState({}, "", "/");
   });

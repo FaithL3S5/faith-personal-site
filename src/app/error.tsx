@@ -5,6 +5,7 @@ import { PillLink } from "@/components/ui/Pill/PillLink";
 import { HeaderWithRuler } from "@/components/layout/HeaderWithRuler/HeaderWithRuler";
 import { serverErrorCopy } from "@/content/errors";
 import { ErrorStage } from "@/features/error/ErrorStage/ErrorStage";
+import { Typer } from "@/features/error/Typer/Typer";
 
 type ErrorPageProps = {
   error: Error & { digest?: string };
@@ -18,7 +19,7 @@ export default function ErrorPage({ error, retry }: ErrorPageProps) {
       <ErrorStage
         kind="serverError"
         copy={serverErrorCopy}
-        referenceValue={error.digest ?? serverErrorCopy.referenceFallback}
+        referenceValue={<Typer value={error.digest ?? serverErrorCopy.referenceFallback} />}
         actions={
           <>
             <PillButton variant="primary" arrow="retry" stretchOnMobile onClick={retry}>

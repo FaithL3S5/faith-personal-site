@@ -9,7 +9,7 @@ describe("ErrorPage", () => {
     render(<ErrorPage error={error} retry={retry} />);
 
     expect(screen.getByRole("heading", { level: 1, name: "Broken" })).toBeTruthy();
-    expect(screen.getByText("3141592653")).toBeTruthy();
+    expect(screen.getByText("3141592653", { ignore: "[aria-hidden='true']" })).toBeTruthy();
 
     fireEvent.click(screen.getByRole("button", { name: "Try again" }));
     expect(retry).toHaveBeenCalledOnce();
@@ -17,6 +17,6 @@ describe("ErrorPage", () => {
 
   it("falls back to unavailable without a digest", () => {
     render(<ErrorPage error={new Error("boom")} retry={() => {}} />);
-    expect(screen.getByText("unavailable")).toBeTruthy();
+    expect(screen.getByText("unavailable", { ignore: "[aria-hidden='true']" })).toBeTruthy();
   });
 });
