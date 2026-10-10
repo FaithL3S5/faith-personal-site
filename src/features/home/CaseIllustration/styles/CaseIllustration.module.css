@@ -1,0 +1,12 @@
+.illustration {
+  flex: none;
+  width: 7.375rem;
+  height: auto;
+  color: var(--crimson);
+}
+
+@media (min-width: 75rem) {
+  .illustration {
+    width: 11rem;
+  }
+}

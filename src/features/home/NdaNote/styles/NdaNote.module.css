@@ -1,0 +1,81 @@
+.note {
+  position: relative;
+  display: flex;
+  align-items: stretch;
+  margin-top: 3.875rem;
+  border: 1px solid var(--ink);
+  background: var(--panel);
+}
+
+.stripe {
+  flex: none;
+  width: 1.75rem;
+  background: repeating-linear-gradient(
+    135deg,
+    var(--ink) 0,
+    var(--ink) 0.4375rem,
+    var(--crimson) 0.4375rem,
+    var(--crimson) 0.875rem
+  );
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0.75rem 0.875rem 0.875rem;
+}
+
+.kicker {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.jelly {
+  position: absolute;
+  right: 0.875rem;
+  bottom: calc(100% - 0.5625rem);
+  width: 6rem;
+  height: auto;
+}
+
+@media (min-width: 48rem) {
+  .note {
+    min-height: 4.75rem;
+    margin-top: 2.375rem;
+  }
+
+  .stripe {
+    width: 3.5rem;
+    background: repeating-linear-gradient(
+      135deg,
+      var(--ink) 0,
+      var(--ink) 0.5625rem,
+      var(--crimson) 0.5625rem,
+      var(--crimson) 1.125rem
+    );
+  }
+
+  .text {
+    padding: 0.875rem 11.25rem 0.875rem 1.25rem;
+  }
+
+  .body {
+    font-size: 1.0625rem;
+  }
+
+  .jelly {
+    right: 1.5rem;
+    bottom: -0.75rem;
+    width: 7.75rem;
+  }
+}
+
+@media (min-width: 75rem) {
+  .note {
+    margin-top: 0;
+  }
+}

@@ -1,0 +1,88 @@
+.walkthrough {
+  display: flex;
+  flex-direction: column;
+  gap: 1.125rem;
+}
+
+.aside {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.intro,
+.details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.eyebrow {
+  --square-size: 0.5625rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.title {
+  font-size: 2.375rem;
+  font-weight: 900;
+  font-stretch: 75%;
+  line-height: 0.94;
+  text-transform: uppercase;
+}
+
+.summary {
+  text-wrap: pretty;
+}
+
+@media (min-width: 48rem) {
+  .walkthrough {
+    gap: 1.5rem;
+  }
+
+  .aside {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: start;
+    gap: 2rem;
+  }
+
+  .intro,
+  .details {
+    gap: 0.875rem;
+  }
+
+  .eyebrow {
+    --square-size: 0.625rem;
+  }
+
+  .title {
+    font-size: 2.75rem;
+  }
+
+  .details > :last-child {
+    align-self: flex-start;
+    margin-top: 0.25rem;
+  }
+}
+
+@media (min-width: 75rem) {
+  .walkthrough {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: stretch;
+  }
+
+  .video {
+    flex: 2 1 32.5rem;
+  }
+
+  .aside {
+    display: flex;
+    flex: 1 1 18.75rem;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.875rem;
+    min-width: 0;
+  }
+}
