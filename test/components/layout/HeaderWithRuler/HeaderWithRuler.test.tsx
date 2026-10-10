@@ -9,4 +9,15 @@ describe("HeaderWithRuler", () => {
     expect(screen.getByRole("banner")).toBeTruthy();
     expect(container.lastElementChild?.getAttribute("aria-hidden")).toBe("true");
   });
+
+  it("adds the scroll marker only on the home page", () => {
+    const home = render(<HeaderWithRuler variant="home" />);
+    const homeRuler = home.container.lastElementChild as HTMLElement;
+    expect(homeRuler.querySelector("[style*='translateX']")).not.toBeNull();
+    home.unmount();
+
+    const error = render(<HeaderWithRuler variant="error" />);
+    const errorRuler = error.container.lastElementChild as HTMLElement;
+    expect(errorRuler.querySelector("[style*='translateX']")).toBeNull();
+  });
 });

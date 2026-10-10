@@ -1,0 +1,29 @@
+.marker {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: var(--gutter);
+  width: 2px;
+  background: var(--crimson);
+  will-change: transform;
+}
+
+.label {
+  position: absolute;
+  top: 0.1875rem;
+  left: 0.3125rem;
+  padding: 0 0.1875rem;
+  background: var(--paper);
+  font-family: var(--font-mono);
+  font-size: 0.5625rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  font-variant-numeric: tabular-nums;
+  color: var(--crimson);
+  white-space: nowrap;
+}
+
+.marker[data-flipped] .label {
+  left: auto;
+  right: 0.3125rem;
+}
