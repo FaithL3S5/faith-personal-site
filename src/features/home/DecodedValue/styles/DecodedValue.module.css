@@ -1,0 +1,18 @@
+.decoded {
+  position: relative;
+  display: inline-block;
+  max-width: 100%;
+}
+
+.decoded[data-decoding] .realLayer {
+  color: transparent;
+}
+
+.scrambleLayer {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  pointer-events: none;
+}

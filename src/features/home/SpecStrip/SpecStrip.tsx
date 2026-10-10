@@ -1,5 +1,6 @@
 import { Arrow } from "@/components/ui/Arrow/Arrow";
 import { specCells, type SpecCell } from "@/content/home";
+import { DecodedValue } from "../DecodedValue/DecodedValue";
 import { LiveClock } from "../LiveClock/LiveClock";
 import styles from "./styles/SpecStrip.module.css";
 
@@ -17,7 +18,7 @@ function SpecValue({ cell }: { cell: SpecCell }) {
 export function SpecStrip() {
   return (
     <dl className={styles.strip}>
-      {specCells.map((cell) => (
+      {specCells.map((cell, order) => (
         <div key={cell.label} className={styles.cell} data-spec={cell.label}>
           <dt className={styles.label}>
             <span aria-hidden="true">
@@ -27,7 +28,9 @@ export function SpecStrip() {
             {cell.label}
           </dt>
           <dd className={styles.value}>
-            <SpecValue cell={cell} />
+            <DecodedValue order={order}>
+              <SpecValue cell={cell} />
+            </DecodedValue>
           </dd>
         </div>
       ))}
