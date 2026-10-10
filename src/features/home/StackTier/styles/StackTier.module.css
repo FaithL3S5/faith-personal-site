@@ -1,0 +1,84 @@
+.tier {
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+  padding: 0.75rem 0;
+  border-top: 1px solid var(--soft-line);
+}
+
+.label {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+}
+
+.pill {
+  border-radius: 999px;
+}
+
+.daily .pills {
+  font-weight: 500;
+}
+
+.daily .pill {
+  padding: 0.375rem 0.9375rem;
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.secondary .label,
+.secondary .pills {
+  color: var(--muted);
+}
+
+.secondary .pill {
+  padding: 0.3125rem 0.875rem;
+  border: 1px solid var(--pill-outline);
+}
+
+.learning .pills {
+  font-weight: 700;
+  color: var(--crimson);
+}
+
+.learning .pill {
+  padding: 0.3125rem 0.875rem;
+  border: 1px dashed var(--crimson);
+}
+
+@media (min-width: 48rem) {
+  .tier {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.625rem 1.5rem;
+    padding: 0.9375rem 0;
+  }
+
+  .label {
+    flex: 0 0 9.375rem;
+  }
+
+  .pills {
+    flex: 1 1 18.75rem;
+  }
+}
+
+@media (min-width: 75rem) {
+  .label {
+    flex-basis: 11rem;
+  }
+}
