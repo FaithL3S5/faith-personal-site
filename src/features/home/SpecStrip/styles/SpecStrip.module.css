@@ -1,0 +1,109 @@
+.strip {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1px;
+  margin: 0;
+  border-bottom: 1px solid var(--ink);
+  background: var(--ink);
+}
+
+.cell {
+  padding: 0.75rem var(--gutter) 0.875rem;
+  background: var(--paper);
+}
+
+.cell[data-spec="Coordinates"] {
+  order: 1;
+  grid-column: 1 / -1;
+}
+
+.label {
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.code {
+  display: none;
+}
+
+.value {
+  margin: 0;
+  font-family: var(--font-accent);
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 2.75rem;
+}
+
+@media (min-width: 48rem) {
+  .strip {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+
+  .cell {
+    grid-column: span 2;
+    padding: 0.875rem 1.5rem 1rem;
+  }
+
+  .cell[data-spec="Coordinates"] {
+    order: 0;
+    grid-column: span 2;
+  }
+
+  .cell[data-spec="Location"],
+  .cell[data-spec="Experience"] {
+    padding-left: var(--gutter);
+  }
+
+  .cell[data-spec="Experience"],
+  .cell[data-spec="Daily drivers"] {
+    grid-column: span 3;
+  }
+
+  .mobileCode {
+    display: none;
+  }
+
+  .code {
+    display: inline;
+  }
+
+  .value {
+    font-size: 1.125rem;
+  }
+
+  .link {
+    min-height: 0;
+  }
+}
+
+@media (min-width: 75rem) {
+  .strip {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .cell,
+  .cell[data-spec="Experience"] {
+    flex: 1 1 12.5rem;
+    padding: 1rem 1.5rem 1.125rem;
+  }
+
+  .cell[data-spec="Location"] {
+    flex: 0 0 calc(var(--rail-width) - 1px);
+    padding-left: var(--gutter);
+  }
+
+  .cell[data-spec="Daily drivers"] {
+    flex: 1 1 12.5rem;
+    padding-right: var(--gutter);
+  }
+}
