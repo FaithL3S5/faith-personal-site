@@ -3,3 +3,10 @@
   max-width: var(--page-max);
   margin: 0 auto;
 }
+
+@media (min-width: 105rem) {
+  .main {
+    border-left: 1px solid var(--ink);
+    border-right: 1px solid var(--ink);
+  }
+}

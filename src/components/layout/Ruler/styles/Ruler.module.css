@@ -63,3 +63,10 @@
     display: inline;
   }
 }
+
+@media (min-width: 105rem) {
+  .scale {
+    border-left: 1px solid var(--ink);
+    border-right: 1px solid var(--ink);
+  }
+}

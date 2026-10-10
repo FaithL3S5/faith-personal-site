@@ -286,3 +286,10 @@
     grid-area: strip;
   }
 }
+
+@media (min-width: 105rem) {
+  .stage {
+    border-left: 1px solid var(--ink);
+    border-right: 1px solid var(--ink);
+  }
+}
