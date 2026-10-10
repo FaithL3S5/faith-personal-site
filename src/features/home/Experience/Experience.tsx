@@ -14,7 +14,7 @@ export function Experience() {
       decoration={<span aria-hidden="true" className={styles.cornerTriangle} />}
     >
       <div>
-        <div aria-hidden="true" className={styles.columnHeads}>
+        <div aria-hidden="true" className={styles.columnHeads} data-reveal-item="">
           <span>No.</span>
           <span>Company</span>
           <span>Role</span>
@@ -27,7 +27,7 @@ export function Experience() {
         </ol>
       </div>
       <FactoryArt placement="experience" />
-      <div className={styles.actions}>
+      <div className={styles.actions} data-reveal-item="">
         <PillLink href={links.resume} variant="primary" arrow="download" isExternal stretchOnMobile>
           Resume, PDF
         </PillLink>

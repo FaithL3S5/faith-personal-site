@@ -11,7 +11,7 @@ const profileLinks = [
 
 export function Contact() {
   return (
-    <SectionFrame sectionId="contact" className={styles.section} contentClassName={styles.content}>
+    <SectionFrame sectionId="contact" hasBottomRule={false} contentClassName={styles.content}>
       <p className={styles.headline} data-reveal-item="">
         {contactHeadline}
       </p>

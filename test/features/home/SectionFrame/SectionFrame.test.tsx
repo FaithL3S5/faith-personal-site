@@ -1,25 +1,42 @@
 import { render, screen } from "@testing-library/react";
-import { describe, expect, it } from "vitest";
+import { beforeEach, describe, expect, it } from "vitest";
+import { triggerIntersection } from "@test/support/intersectionObserver";
+import { setMediaQueryMatches } from "@test/support/matchMedia";
 import { SectionFrame } from "@/features/home/SectionFrame/SectionFrame";
+import { hasPlayed, resetPlayedKeys } from "@/lib/motion/playOnce";
+import { reducedMotionQuery } from "@/lib/motion/reducedMotion";
+
+function renderStackFrame(hasBottomRule?: boolean) {
+  return render(
+    <SectionFrame
+      sectionId="stack"
+      contentClassName="content"
+      hasBottomRule={hasBottomRule}
+      decoration={<span data-testid="decoration" />}
+    >
+      <p data-reveal-item="">Body</p>
+    </SectionFrame>,
+  );
+}
 
 describe("SectionFrame", () => {
+  beforeEach(() => {
+    resetPlayedKeys();
+  });
+
   it("labels the section by its heading and anchors it by id", () => {
-    const { container } = render(
-      <SectionFrame
-        sectionId="stack"
-        className="extra"
-        contentClassName="content"
-        decoration={<span data-testid="decoration" />}
-      >
-        <p>Body</p>
-      </SectionFrame>,
-    );
+    const { container } = renderStackFrame();
 
     const section = screen.getByRole("region", { name: "Stack" });
     expect(section.id).toBe("stack");
-    expect(container.querySelector("[data-count-up='04']")?.getAttribute("aria-hidden")).toBe("true");
+    expect(container.querySelector("[data-count-up]")?.textContent).toBe("04");
     expect(screen.getByTestId("decoration")).toBeTruthy();
-    expect(screen.getByText("Body")).toBeTruthy();
+    expect(container.querySelectorAll("[data-hairline='horizontal']")).toHaveLength(2);
+  });
+
+  it("leaves out the bottom rule when asked", () => {
+    const { container } = renderStackFrame(false);
+    expect(container.querySelectorAll("[data-hairline='horizontal']")).toHaveLength(1);
   });
 
   it("fills only the progress segment for the current section", () => {
@@ -38,5 +55,24 @@ describe("SectionFrame", () => {
       false,
     ]);
     expect(container.textContent).toContain("02 / 05");
+  });
+
+  it("hides its content until it scrolls into view, then reveals it once", () => {
+    const { container, unmount } = renderStackFrame();
+    const body = screen.getByText("Body");
+    expect(body.style.opacity).toBe("0");
+
+    triggerIntersection(container.querySelector("section") as Element, true);
+    expect(hasPlayed("section-04")).toBe(true);
+
+    unmount();
+    const remounted = renderStackFrame();
+    expect(remounted.getByText("Body").style.opacity).toBe("");
+  });
+
+  it("keeps everything at rest with reduced motion", () => {
+    setMediaQueryMatches(reducedMotionQuery, true);
+    renderStackFrame();
+    expect(screen.getByText("Body").style.opacity).toBe("");
   });
 });

@@ -3,6 +3,7 @@ import { RoundEyes } from "@/components/jelly/JellyFigure/JellyEyes";
 import { eyeCenters } from "@/components/jelly/JellyFigure/jellyShapes";
 import { Arrow } from "@/components/ui/Arrow/Arrow";
 import { DotMatrix } from "@/components/ui/DotMatrix/DotMatrix";
+import { RevealGroup } from "@/components/ui/RevealGroup/RevealGroup";
 import { copyrightLine, offDutyTagline } from "@/content/footer";
 import { links } from "@/content/site";
 import { Colophon } from "../Colophon/Colophon";
@@ -12,8 +13,8 @@ export function SiteFooter() {
   return (
     <footer className={styles.footer}>
       <div aria-hidden="true" className={styles.stripe} />
-      <div className={styles.columns}>
-        <div className={styles.identity}>
+      <RevealGroup playKey="footer" trigger="view" staggerMs={80} className={styles.columns}>
+        <div className={styles.identity} data-reveal-item="">
           <div>
             <p className={styles.kicker}>This guy&apos;s name is</p>
             <p className={styles.mascotName}>
@@ -32,8 +33,10 @@ export function SiteFooter() {
             <Arrow direction="up" />
           </a>
         </div>
-        <Colophon className={styles.colophon} />
-        <div className={styles.offDuty}>
+        <div className={styles.colophon} data-reveal-item="">
+          <Colophon />
+        </div>
+        <div className={styles.offDuty} data-reveal-item="">
           <h2 className={styles.heading}>Off duty</h2>
           <a href={links.gamingChannel} target="_blank" rel="noopener" className={styles.channel}>
             Gaming channel, Faith_L3S5
@@ -43,7 +46,7 @@ export function SiteFooter() {
           <p className={styles.tagline}>{offDutyTagline}</p>
           <p className={styles.copyright}>{copyrightLine}</p>
         </div>
-      </div>
+      </RevealGroup>
     </footer>
   );
 }

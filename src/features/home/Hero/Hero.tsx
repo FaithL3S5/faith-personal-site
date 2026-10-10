@@ -4,6 +4,7 @@ import { eyeCenters } from "@/components/jelly/JellyFigure/jellyShapes";
 import { DotMatrix } from "@/components/ui/DotMatrix/DotMatrix";
 import { Eyebrow } from "@/components/ui/Eyebrow/Eyebrow";
 import { PillLink } from "@/components/ui/Pill/PillLink";
+import { RevealGroup } from "@/components/ui/RevealGroup/RevealGroup";
 import { fullName, heroParagraph } from "@/content/site";
 import { HeroLetterPanel } from "../HeroLetterPanel/HeroLetterPanel";
 import styles from "./styles/Hero.module.css";
@@ -12,18 +13,24 @@ export function Hero() {
   return (
     <section aria-labelledby="hero-title" className={styles.hero}>
       <HeroLetterPanel />
-      <div className={styles.text}>
+      <RevealGroup playKey="hero-text" trigger="load" staggerMs={80} className={styles.text}>
         <div aria-hidden="true" className={styles.edition}>
           <span>Portfolio / 2026</span>
           <span className={styles.barcode} />
         </div>
-        <Eyebrow className={styles.eyebrow}>Hello, I&apos;m Faith</Eyebrow>
-        <h1 id="hero-title" className={styles.title}>
+        <div data-reveal-item="">
+          <Eyebrow className={styles.eyebrow}>Hello, I&apos;m Faith</Eyebrow>
+        </div>
+        <h1 id="hero-title" className={styles.title} data-reveal-item="">
           FULL-STACK DEVELOPER
         </h1>
-        <p className={styles.paragraph}>{heroParagraph}</p>
-        <p className={styles.byline}>{fullName} / Software Engineer</p>
-        <div className={styles.actions}>
+        <p className={styles.paragraph} data-reveal-item="">
+          {heroParagraph}
+        </p>
+        <p className={styles.byline} data-reveal-item="">
+          {fullName} / Software Engineer
+        </p>
+        <div className={styles.actions} data-reveal-item="">
           <PillLink href="#work" variant="primary" arrow="down">
             View work
           </PillLink>
@@ -35,7 +42,7 @@ export function Hero() {
         <JellyFigure facing="right" label="Jelly looking down at the page" className={styles.jelly}>
           <RoundEyes centers={eyeCenters.rightLookingDown} />
         </JellyFigure>
-      </div>
+      </RevealGroup>
     </section>
   );
 }

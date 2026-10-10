@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 import { DotMatrix } from "@/components/ui/DotMatrix/DotMatrix";
 import type { ErrorCopy } from "@/content/errors";
 import { links } from "@/content/site";
+import { CountUpStatus } from "../CountUpStatus/CountUpStatus";
 import styles from "./styles/StatusStrip.module.css";
 
 const stillOnlineLinks = [
@@ -27,9 +28,7 @@ export function StatusStrip({ copy, referenceValue }: StatusStripProps) {
       <div className={styles.cell}>
         <p className={styles.label}>B2 / Status</p>
         <div className={styles.statusRow}>
-          <p className={styles.statusCode} data-status-code={copy.statusCode}>
-            {copy.statusCode}
-          </p>
+          <CountUpStatus statusCode={copy.statusCode} className={styles.statusCode} />
           <DotMatrix columns={9} rows={4} circleLeft={77} tone="ink" className={styles.mobileDots} />
         </div>
         <p className={styles.caption}>{copy.statusCaption}</p>

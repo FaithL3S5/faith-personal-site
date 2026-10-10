@@ -14,6 +14,7 @@ export function FactoryArt({ placement }: FactoryArtProps) {
       width={1790}
       height={1407}
       className={`${styles.factory} ${styles[placement]}`}
+      data-reveal-item=""
     />
   );
 }

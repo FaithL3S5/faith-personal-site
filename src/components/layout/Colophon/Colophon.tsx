@@ -54,9 +54,9 @@ const colophonFacts: Fact[] = [
   },
 ];
 
-export function Colophon({ className }: { className?: string }) {
+export function Colophon() {
   return (
-    <div className={className ? `${styles.colophon} ${className}` : styles.colophon}>
+    <div className={styles.colophon}>
       <h2 className={styles.heading}>Colophon</h2>
       <FactList facts={colophonFacts} variant="colophon" />
     </div>
