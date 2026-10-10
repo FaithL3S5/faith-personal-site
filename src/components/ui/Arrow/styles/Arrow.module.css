@@ -1,0 +1,44 @@
+.arrow {
+  display: inline-flex;
+  flex: none;
+  width: 0.875rem;
+  height: 0.875rem;
+  transition: transform var(--dur-fast);
+  --nudge-x: 0rem;
+  --nudge-y: 0rem;
+}
+
+.arrow[data-size="small"] {
+  width: 0.8125rem;
+  height: 0.8125rem;
+}
+
+.arrow svg {
+  width: 100%;
+  height: 100%;
+}
+
+.arrow[data-arrow="down"],
+.arrow[data-arrow="download"] {
+  --nudge-y: 0.1875rem;
+}
+
+.arrow[data-arrow="up"] {
+  --nudge-y: -0.1875rem;
+}
+
+.arrow[data-arrow="out"] {
+  --nudge-x: 0.1875rem;
+  --nudge-y: -0.1875rem;
+}
+
+.arrow[data-arrow="back"] {
+  --nudge-x: -0.1875rem;
+}
+
+@media (hover: hover) {
+  a:hover > .arrow,
+  button:hover > .arrow {
+    transform: translate(var(--nudge-x), var(--nudge-y));
+  }
+}

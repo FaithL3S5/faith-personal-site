@@ -1,0 +1,17 @@
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  font-family: var(--font-mono);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  --square-size: 0.625rem;
+  --square-color: var(--crimson);
+}
+
+.square {
+  flex: none;
+  width: var(--square-size);
+  height: var(--square-size);
+  background: var(--square-color);
+}

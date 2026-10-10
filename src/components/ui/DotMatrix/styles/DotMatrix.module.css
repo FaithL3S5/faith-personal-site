@@ -1,0 +1,21 @@
+.matrix {
+  flex: none;
+  overflow: visible;
+}
+
+.circle {
+  fill: var(--crimson);
+}
+
+.ink .dot {
+  fill: var(--ink);
+}
+
+.paper .dot {
+  fill: var(--paper);
+}
+
+.dot {
+  transform-box: fill-box;
+  transform-origin: center;
+}

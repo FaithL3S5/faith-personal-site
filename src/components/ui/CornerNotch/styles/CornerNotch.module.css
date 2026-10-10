@@ -1,0 +1,38 @@
+.notch {
+  --notch-size: 3.25rem;
+  --notch-radius: 1.125rem;
+  display: flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: var(--notch-size);
+  height: var(--notch-size);
+  border-bottom-left-radius: var(--notch-radius);
+  background: var(--paper);
+}
+
+.outlined {
+  border-left: 1px solid var(--ink);
+  border-bottom: 1px solid var(--ink);
+}
+
+.triangle {
+  width: 0;
+  height: 0;
+  border-left: 0.5625rem solid transparent;
+  border-right: 0.5625rem solid transparent;
+  border-top: 0.875rem solid var(--crimson);
+}
+
+.corner {
+  width: 1.125rem;
+  height: 1.125rem;
+  fill: var(--crimson);
+}
+
+@media (min-width: 75rem) {
+  .corner {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+}

@@ -1,0 +1,8 @@
+.figure {
+  height: auto;
+}
+
+.eyes {
+  transform-box: fill-box;
+  transform-origin: center;
+}

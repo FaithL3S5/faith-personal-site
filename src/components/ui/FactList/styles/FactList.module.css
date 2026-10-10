@@ -1,0 +1,97 @@
+.list {
+  margin: 0;
+  --rule-edge: var(--ink);
+  --rule-inner: var(--soft-line);
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.625rem 0;
+  border-top: 1px solid var(--rule-inner);
+}
+
+.row:first-child {
+  border-top-color: var(--rule-edge);
+}
+
+.closed .row:last-child {
+  border-bottom: 1px solid var(--rule-edge);
+}
+
+.label {
+  flex: none;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.value {
+  margin: 0;
+  font-weight: 700;
+  text-align: right;
+}
+
+.dark {
+  --rule-edge: var(--on-black-line);
+  --rule-inner: var(--on-black-line);
+}
+
+.dark .label {
+  color: var(--on-black-muted);
+}
+
+.plate .row {
+  padding: 0.5625rem 0;
+}
+
+.plate .label {
+  flex: 0 1 auto;
+  font-size: 0.8125rem;
+  letter-spacing: normal;
+  text-transform: none;
+  color: inherit;
+}
+
+.stacks {
+  flex-direction: column;
+  gap: 0.25rem;
+  padding-bottom: 0;
+}
+
+.stacks .value {
+  text-align: left;
+}
+
+@media (min-width: 48rem) {
+  .stacks {
+    flex-direction: row;
+    gap: 1rem;
+    padding-bottom: 0.5625rem;
+  }
+
+  .stacks .value {
+    text-align: right;
+  }
+}
+
+.colophon {
+  --rule-edge: var(--paper);
+  --rule-inner: var(--on-black-line);
+}
+
+.colophon .row {
+  padding: 0.6875rem 0;
+}
+
+.colophon .label {
+  color: var(--on-black-muted);
+}
+
+.colophon .value {
+  font-weight: 400;
+  text-wrap: pretty;
+}
