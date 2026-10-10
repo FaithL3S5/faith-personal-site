@@ -1,0 +1,173 @@
+.frame {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border-bottom: 1px solid var(--ink);
+}
+
+.rail {
+  position: relative;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-areas:
+    "number kanji"
+    "title kanji"
+    "progress kanji";
+  align-items: start;
+  gap: 0.625rem 0.75rem;
+  padding: 1.125rem var(--gutter) 1rem;
+  border-bottom: 1px solid var(--ink);
+}
+
+.brush {
+  position: absolute;
+  right: -3.375rem;
+  top: 50%;
+  width: 7.75rem;
+  margin-top: -3.875rem;
+  transform: scaleX(-1);
+}
+
+.number {
+  grid-area: number;
+  position: relative;
+  font-family: var(--font-accent);
+  font-size: 3.5rem;
+  font-weight: 700;
+  line-height: 0.86;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+  color: var(--crimson);
+}
+
+.title {
+  grid-area: title;
+  position: relative;
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.kanji {
+  grid-area: kanji;
+  position: relative;
+  margin-right: 4.375rem;
+  padding-top: 0.75rem;
+  font-size: 1.75rem;
+  font-weight: 900;
+  line-height: 1.2;
+}
+
+.kanji rt {
+  font-size: 0.625rem;
+}
+
+.progress {
+  grid-area: progress;
+  position: relative;
+}
+
+.content {
+  min-width: 0;
+}
+
+@media (min-width: 48rem) {
+  .rail {
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    grid-template-areas:
+      "number title kanji"
+      "number progress kanji";
+    align-items: end;
+    gap: 0.75rem 1.5rem;
+    padding: 1.625rem var(--gutter) 1.375rem;
+  }
+
+  .brush {
+    right: -4.125rem;
+    width: 10.25rem;
+    margin-top: -5.125rem;
+  }
+
+  .number {
+    font-size: 5rem;
+  }
+
+  .title {
+    font-size: 0.875rem;
+  }
+
+  .progress {
+    padding-bottom: 0.25rem;
+  }
+
+  .kanji {
+    align-self: start;
+    margin-right: 6.875rem;
+    padding-top: 0.875rem;
+    font-size: 2.5rem;
+  }
+
+  .kanji rt {
+    font-size: 0.6875rem;
+  }
+}
+
+@media (min-width: 75rem) {
+  .frame {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .rail {
+    flex: 0 0 var(--rail-width);
+    min-height: 32.5rem;
+    overflow: visible;
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-rows: auto auto 1fr auto;
+    grid-template-areas:
+      "number kanji"
+      "title kanji"
+      ". kanji"
+      "progress progress";
+    align-items: start;
+    gap: 1rem 1rem;
+    padding: 2.75rem 1.5rem 2.25rem var(--gutter);
+    border-bottom: 0;
+    border-right: 1px solid var(--ink);
+  }
+
+  .brush {
+    right: auto;
+    top: auto;
+    left: -2.75rem;
+    bottom: 6.75rem;
+    z-index: -1;
+    width: 12.5625rem;
+    margin-top: 0;
+    transform: none;
+  }
+
+  .number {
+    font-size: 5.75rem;
+  }
+
+  .progress {
+    align-self: end;
+    padding-bottom: 0;
+  }
+
+  .kanji {
+    margin-right: 0;
+    padding-top: 0;
+    writing-mode: vertical-rl;
+    font-size: 2.75rem;
+    line-height: 1.7;
+  }
+
+  .content {
+    flex: 999 1 35rem;
+  }
+}

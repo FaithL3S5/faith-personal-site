@@ -1,0 +1,122 @@
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.125rem;
+  padding: 1.5rem var(--gutter) 1.75rem;
+}
+
+.textColumn {
+  display: contents;
+}
+
+.paragraph {
+  font-size: 1.25rem;
+  font-weight: 500;
+  line-height: 1.4;
+  text-wrap: pretty;
+}
+
+.computer {
+  align-self: flex-end;
+  width: 18.75rem;
+  max-width: none;
+  height: auto;
+  margin: -0.375rem -4rem -0.875rem 0;
+}
+
+.improving {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  color: var(--muted);
+}
+
+.square {
+  flex: none;
+  width: 0.5rem;
+  height: 0.5rem;
+  background: var(--crimson);
+}
+
+@media (min-width: 48rem) {
+  .content {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    grid-template-areas:
+      "paragraph paragraph"
+      "improving improving"
+      "computer plate";
+    align-items: end;
+    gap: 1.5rem;
+    padding: 2.5rem var(--gutter) 2.75rem;
+  }
+
+  .paragraph {
+    grid-area: paragraph;
+    font-size: 1.5625rem;
+    line-height: 1.38;
+  }
+
+  .improving {
+    grid-area: improving;
+  }
+
+  .computer {
+    grid-area: computer;
+    width: 20.625rem;
+    margin: 0 0 -1.25rem -4.375rem;
+  }
+
+  .plate {
+    grid-area: plate;
+  }
+}
+
+@media (min-width: 75rem) {
+  .content {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: stretch;
+    gap: 3rem;
+    padding: 3rem var(--gutter);
+  }
+
+  .textColumn {
+    position: relative;
+    isolation: isolate;
+    display: flex;
+    flex: 2 1 25rem;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1.125rem;
+    min-width: 0;
+  }
+
+  .paragraph {
+    max-width: 26em;
+    margin-top: 3.125rem;
+    font-size: 1.6875rem;
+    line-height: 1.36;
+  }
+
+  .paragraphLines {
+    padding: 1px 0.5rem 0.375rem 0;
+    background: var(--paper);
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+  }
+
+  .computer {
+    position: absolute;
+    right: -12.5rem;
+    bottom: -0.625rem;
+    z-index: -1;
+    width: 32.875rem;
+    margin: 0;
+  }
+
+  .plate {
+    flex: 1.4 1 23.75rem;
+  }
+}

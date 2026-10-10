@@ -1,0 +1,124 @@
+.plate {
+  position: relative;
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid var(--ink);
+  border-radius: 1.25rem 0 1.25rem 1.25rem;
+  background: var(--panel);
+}
+
+.notch {
+  --notch-size: 2.875rem;
+  --notch-radius: 1rem;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.head {
+  display: flex;
+  align-items: stretch;
+  border-bottom: 1px solid var(--ink);
+}
+
+.logoBox {
+  display: flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 6rem;
+  padding: 0.75rem;
+  background: var(--ink);
+}
+
+.logo {
+  width: 4.5rem;
+  height: 4.5rem;
+  object-fit: contain;
+}
+
+.identity {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.125rem;
+  min-width: 0;
+  padding: 0.875rem 3.25rem 0.875rem 1rem;
+}
+
+.kicker {
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.name {
+  font-size: 1.5rem;
+  font-weight: 900;
+  font-stretch: 75%;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.role {
+  padding-top: 0.25rem;
+  font-size: 0.875rem;
+}
+
+.body {
+  padding: 0.25rem 1rem 0.875rem;
+}
+
+.groupTitle {
+  padding: 0.75rem 0 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.laterGroup {
+  padding-top: 1rem;
+}
+
+@media (min-width: 48rem) {
+  .notch {
+    --notch-size: 3.25rem;
+    --notch-radius: 1.125rem;
+  }
+
+  .logoBox {
+    width: 9.25rem;
+    padding: 1rem;
+  }
+
+  .logo {
+    width: 7.25rem;
+    height: 7.25rem;
+  }
+
+  .identity {
+    padding: 1.125rem 4rem 1rem 1.25rem;
+  }
+
+  .name {
+    font-size: 1.875rem;
+  }
+
+  .role {
+    padding-top: 0.375rem;
+    font-size: 0.9375rem;
+  }
+
+  .body {
+    padding: 0.375rem 1.25rem 1rem;
+  }
+
+  .laterGroup {
+    padding-top: 1.125rem;
+  }
+}
