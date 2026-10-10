@@ -2,7 +2,6 @@ import { basename } from "node:path";
 import react from "@vitejs/plugin-react";
 import { defineConfig, type Plugin } from "vitest/config";
 
-// next/image expects StaticImageData, Vite would hand back a plain URL string.
 const staticImageData: Plugin = {
   name: "static-image-data",
   enforce: "pre",

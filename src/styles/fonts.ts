@@ -17,7 +17,6 @@ const jetBrainsMono = JetBrains_Mono({
   variable: "--font-jetbrains-mono",
 });
 
-// Japanese glyph files are large, so they load on demand instead of preloading.
 const zenKakuGothicNew = Zen_Kaku_Gothic_New({
   weight: ["500", "900"],
   preload: false,

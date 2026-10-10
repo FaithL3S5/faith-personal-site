@@ -1,5 +1,3 @@
-/* Breakpoints (media queries cannot read custom properties): tablet 48rem, desktop 75rem, page cap 105rem */
-
 :root {
   --paper: #e2e3e5;
   --panel: #ecedef;

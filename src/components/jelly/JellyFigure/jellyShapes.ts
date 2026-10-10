@@ -6,7 +6,6 @@ type JellyOutline = {
   body: string;
 };
 
-// "right" is the mir- drawing set, used wherever he sits on the right side of the page.
 export const jellyOutlines: Record<JellyFacing, JellyOutline> = {
   right: {
     leftEar:

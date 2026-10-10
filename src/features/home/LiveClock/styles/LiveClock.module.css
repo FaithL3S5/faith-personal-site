@@ -1,4 +1,9 @@
 .clock {
-  font-variant-numeric: tabular-nums;
   white-space: nowrap;
+}
+
+.digitSlot {
+  display: inline-block;
+  width: 0.62em;
+  text-align: center;
 }
