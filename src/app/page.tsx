@@ -1,3 +1,10 @@
+import { HeaderWithRuler } from "@/components/layout/HeaderWithRuler/HeaderWithRuler";
+
 export default function HomePage() {
-  return <main id="main" tabIndex={-1} />;
+  return (
+    <>
+      <HeaderWithRuler variant="home" />
+      <main id="main" tabIndex={-1} />
+    </>
+  );
 }

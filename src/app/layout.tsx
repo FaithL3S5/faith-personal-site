@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
+import { BrushCircleSprite } from "@/components/ui/BrushCircle/BrushCircle";
 import { heroParagraph, siteTitle, siteUrl } from "@/content/site";
+import { SiteFooter } from "@/components/layout/SiteFooter/SiteFooter";
+import { SkipLink } from "@/components/layout/SkipLink/SkipLink";
 import { fontVariableClassNames } from "@/styles/fonts";
 import "./globals.css";
 
@@ -24,7 +27,12 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en" className={fontVariableClassNames}>
-      <body>{children}</body>
+      <body>
+        <SkipLink />
+        <BrushCircleSprite />
+        {children}
+        <SiteFooter />
+      </body>
     </html>
   );
 }

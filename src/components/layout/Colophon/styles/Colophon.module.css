@@ -1,0 +1,37 @@
+.colophon {
+  min-width: 0;
+}
+
+.heading {
+  padding-bottom: 0.625rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.accent {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.625rem;
+}
+
+.swatch {
+  width: 0.75rem;
+  height: 0.75rem;
+  border: 1px solid var(--paper);
+  background: var(--crimson);
+}
+
+.longValue {
+  display: inline-block;
+  max-width: 27em;
+}
+
+@media (min-width: 75rem) {
+  .swatch {
+    width: 0.875rem;
+    height: 0.875rem;
+  }
+}

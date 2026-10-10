@@ -87,6 +87,10 @@
   padding: 0.6875rem 0;
 }
 
+.colophon .row:nth-last-child(-n + 2) {
+  gap: 2rem;
+}
+
 .colophon .label {
   color: var(--on-black-muted);
 }

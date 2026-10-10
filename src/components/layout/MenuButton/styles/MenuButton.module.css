@@ -1,0 +1,32 @@
+.menuButton {
+  display: flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  padding: 0;
+  border: 1px solid var(--on-black-line);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--paper);
+  cursor: pointer;
+  transition: border-color var(--dur-fast);
+}
+
+.menuButton svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+@media (hover: hover) {
+  .menuButton:hover {
+    border-color: var(--paper);
+  }
+}
+
+@media (min-width: 75rem) {
+  .menuButton {
+    display: none;
+  }
+}
