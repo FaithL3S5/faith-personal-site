@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { heroParagraph, siteTitle, siteUrl } from "@/content/site";
+import { fontVariableClassNames } from "@/styles/fonts";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -22,7 +23,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en">
+    <html lang="en" className={fontVariableClassNames}>
       <body>{children}</body>
     </html>
   );

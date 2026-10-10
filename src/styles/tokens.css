@@ -1,0 +1,39 @@
+/* Breakpoints (media queries cannot read custom properties): tablet 48rem, desktop 75rem, page cap 105rem */
+
+:root {
+  --paper: #e2e3e5;
+  --panel: #ecedef;
+  --ink: #141414;
+  --crimson: #990000;
+  --crimson-hover: #7a0000;
+  --resume-hover: #b30000;
+  --bright-red: #ff3333;
+  --muted: #4a4d52;
+  --soft-line: #9fa3a9;
+  --pill-outline: #6e7278;
+  --grey-mid: #8a8e94;
+  --on-black-muted: #b4b8be;
+  --on-black-line: #5c6066;
+  --white: #ffffff;
+
+  --font-main: var(--font-archivo), "Helvetica Neue", Helvetica, sans-serif;
+  --font-accent: var(--font-chakra-petch), var(--font-archivo), sans-serif;
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, monospace;
+  --font-japanese: var(--font-zen-kaku), "Noto Sans JP", sans-serif;
+
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-line: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-fast: 150ms;
+  --dur-base: 500ms;
+  --dur-line: 600ms;
+
+  --gutter: 1.25rem;
+  --rail-width: 17rem;
+  --page-max: 105rem;
+}
+
+@media (min-width: 48rem) {
+  :root {
+    --gutter: 2.5rem;
+  }
+}
