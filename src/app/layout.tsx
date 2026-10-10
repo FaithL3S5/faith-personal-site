@@ -4,7 +4,7 @@ import { heroParagraph, siteTitle, siteUrl } from "@/content/site";
 import { SiteFooter } from "@/components/layout/SiteFooter/SiteFooter";
 import { SkipLink } from "@/components/layout/SkipLink/SkipLink";
 import { fontVariableClassNames } from "@/styles/fonts";
-import "./globals.css";
+import "@/styles/globals.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
