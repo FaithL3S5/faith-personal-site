@@ -46,7 +46,7 @@
   }
 }
 
-@media (min-width: 48rem) {
+@media (min-width: 44rem) {
   .bar {
     gap: 1rem;
     padding: 0.625rem 2rem 0.625rem 2.5rem;

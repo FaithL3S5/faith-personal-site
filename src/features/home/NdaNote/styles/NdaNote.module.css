@@ -42,7 +42,7 @@
   height: auto;
 }
 
-@media (min-width: 48rem) {
+@media (min-width: 44rem) {
   .note {
     min-height: 4.75rem;
     margin-top: 2.375rem;

@@ -59,7 +59,7 @@
   border: 1px dashed var(--crimson);
 }
 
-@media (min-width: 48rem) {
+@media (min-width: 44rem) {
   .tier {
     flex-direction: row;
     flex-wrap: wrap;

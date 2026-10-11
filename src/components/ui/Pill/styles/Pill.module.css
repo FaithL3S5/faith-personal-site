@@ -33,7 +33,7 @@
   width: 100%;
 }
 
-@media (min-width: 48rem) {
+@media (min-width: 44rem) {
   .stretchOnMobile {
     display: inline-flex;
     width: auto;

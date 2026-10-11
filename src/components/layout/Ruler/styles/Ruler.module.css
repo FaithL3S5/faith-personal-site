@@ -42,7 +42,7 @@
   display: none;
 }
 
-@media (min-width: 48rem) {
+@media (min-width: 44rem) {
   .label[data-tick="5"],
   .label[data-tick="6"],
   .label[data-tick="7"],

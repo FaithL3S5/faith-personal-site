@@ -43,7 +43,7 @@
   min-height: 2.75rem;
 }
 
-@media (min-width: 48rem) {
+@media (min-width: 44rem) {
   .strip {
     grid-template-columns: repeat(6, minmax(0, 1fr));
   }

@@ -35,7 +35,7 @@
   text-wrap: pretty;
 }
 
-@media (min-width: 48rem) {
+@media (min-width: 44rem) {
   .walkthrough {
     gap: 1.5rem;
   }

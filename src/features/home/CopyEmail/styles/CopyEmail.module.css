@@ -47,7 +47,7 @@
   white-space: nowrap;
 }
 
-@media (min-width: 48rem) {
+@media (min-width: 44rem) {
   .actions {
     display: contents;
   }

@@ -140,7 +140,7 @@
   color: var(--on-black-muted);
 }
 
-@media (min-width: 48rem) {
+@media (min-width: 44rem) {
   .stripe {
     height: 0.875rem;
   }

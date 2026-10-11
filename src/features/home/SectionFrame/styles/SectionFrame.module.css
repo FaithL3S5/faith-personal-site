@@ -104,7 +104,7 @@
   min-width: 0;
 }
 
-@media (min-width: 48rem) {
+@media (min-width: 44rem) {
   .rail {
     grid-template-columns: auto minmax(0, 1fr) auto;
     grid-template-areas:

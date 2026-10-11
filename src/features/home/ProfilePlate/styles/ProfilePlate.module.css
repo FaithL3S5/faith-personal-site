@@ -85,7 +85,7 @@
   padding-top: 1rem;
 }
 
-@media (min-width: 48rem) {
+@media (min-width: 44rem) {
   .notch {
     --notch-size: 3.25rem;
     --notch-radius: 1.125rem;

@@ -16,7 +16,7 @@ export function About() {
           src={computer}
           alt=""
           aria-hidden="true"
-          sizes="(min-width: 75rem) 33rem, (min-width: 48rem) 21rem, 19rem"
+          sizes="(min-width: 75rem) 33rem, (min-width: 44rem) 21rem, 19rem"
           className={styles.computer}
           data-reveal-item=""
         />

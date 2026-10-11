@@ -107,7 +107,7 @@
   background: var(--bright-red);
 }
 
-@media (min-width: 48rem) {
+@media (min-width: 44rem) {
   .frame {
     border-radius: 1.375rem;
   }

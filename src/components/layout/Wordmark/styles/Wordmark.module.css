@@ -40,7 +40,7 @@
   }
 }
 
-@media (min-width: 48rem) {
+@media (min-width: 44rem) {
   .wordmark {
     gap: 0.75rem;
     min-height: 3rem;

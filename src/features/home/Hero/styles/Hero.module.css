@@ -65,7 +65,7 @@
   width: 7.25rem;
 }
 
-@media (min-width: 48rem) {
+@media (min-width: 44rem) {
   .text {
     gap: 1.25rem;
     padding: 2.75rem var(--gutter) 3rem;
