@@ -1,0 +1,43 @@
+.headline {
+  position: relative;
+}
+
+.line {
+  display: block;
+}
+
+.gagLayer {
+  position: absolute;
+  inset: 0;
+  display: none;
+}
+
+:global(html[data-headline-gag]) .gagLayer {
+  display: block;
+}
+
+:global(html[data-headline-gag]) .realText {
+  color: transparent;
+}
+
+.cursor {
+  display: inline-block;
+  width: 0.55em;
+  height: 0.72em;
+  background: var(--crimson);
+  vertical-align: baseline;
+}
+
+.blinking {
+  animation: blink 0.5s steps(1, end) 2;
+}
+
+@keyframes blink {
+  0% {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}

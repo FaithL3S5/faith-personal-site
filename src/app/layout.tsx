@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { BrushCircleSprite } from "@/components/ui/BrushCircle/BrushCircle";
-import { heroParagraph, siteTitle, siteUrl } from "@/content/site";
+import { heroParagraph, isHeadlineGagEnabled, siteTitle, siteUrl } from "@/content/site";
+import { headlineGagScript } from "@/lib/motion/headlineGag";
 import { PaperArea } from "@/components/layout/PaperArea/PaperArea";
 import { SiteFooter } from "@/components/layout/SiteFooter/SiteFooter";
 import { SkipLink } from "@/components/layout/SkipLink/SkipLink";
@@ -31,7 +32,10 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" className={fontVariableClassNames}>
+    <html lang="en" className={fontVariableClassNames} suppressHydrationWarning>
+      <head>
+        {isHeadlineGagEnabled && <script dangerouslySetInnerHTML={{ __html: headlineGagScript }} />}
+      </head>
       <body>
         <SkipLink />
         <BrushCircleSprite />

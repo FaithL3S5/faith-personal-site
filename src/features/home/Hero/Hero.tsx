@@ -4,6 +4,7 @@ import { Eyebrow } from "@/components/ui/Eyebrow/Eyebrow";
 import { PillLink } from "@/components/ui/Pill/PillLink";
 import { RevealGroup } from "@/components/ui/RevealGroup/RevealGroup";
 import { fullName, heroParagraph } from "@/content/site";
+import { HeroHeadline } from "../HeroHeadline/HeroHeadline";
 import { HeroLetterPanel } from "../HeroLetterPanel/HeroLetterPanel";
 import styles from "./styles/Hero.module.css";
 
@@ -19,9 +20,7 @@ export function Hero() {
         <div data-reveal-item="">
           <Eyebrow className={styles.eyebrow}>Hello, I&apos;m Faith</Eyebrow>
         </div>
-        <h1 id="hero-title" className={styles.title} data-reveal-item="">
-          FULL-STACK DEVELOPER
-        </h1>
+        <HeroHeadline className={styles.title} />
         <p className={styles.paragraph} data-reveal-item="">
           {heroParagraph}
         </p>
