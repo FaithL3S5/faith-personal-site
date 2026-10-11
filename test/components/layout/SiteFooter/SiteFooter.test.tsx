@@ -22,7 +22,7 @@ describe("SiteFooter", () => {
     render(<SiteFooter />);
 
     expect(screen.getByRole("link", { name: "Building Vectors by Vecteezy" })).toBeTruthy();
-    expect(screen.getByRole("link", { name: "Bonsai Vectors by Vecteezy" })).toBeTruthy();
+    expect(screen.queryByRole("link", { name: "Bonsai Vectors by Vecteezy" })).toBeNull();
     expect(screen.getByRole("link", { name: "Japanese Wave Pattern Vectors by Vecteezy" })).toBeTruthy();
     expect(screen.getByRole("link", { name: "CC BY 2.0" }).getAttribute("rel")).toBe(
       "noopener license",

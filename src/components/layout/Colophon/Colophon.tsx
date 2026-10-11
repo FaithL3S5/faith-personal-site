@@ -2,7 +2,6 @@ import { FactList, type Fact } from "@/components/ui/FactList/FactList";
 import {
   computerAttribution,
   factoryAttribution,
-  treeAttribution,
   typefaceList,
   waveAttribution,
 } from "@/content/footer";
@@ -46,7 +45,6 @@ const colophonFacts: Fact[] = [
   { label: "Build", value: buildStamp },
   { label: "Page weight", value: <PageWeight /> },
   attributionFact("Factory art", factoryAttribution),
-  attributionFact("Tree art", treeAttribution),
   ...(wideScreenWave === "drawn" ? [attributionFact("Wave art", waveAttribution)] : []),
   {
     label: "Computer photo",
