@@ -10,6 +10,7 @@ function runGagScript() {
 
 describe("headlineGag", () => {
   beforeEach(() => {
+    sessionStorage.clear();
     window.history.pushState({}, "", "/");
   });
 
@@ -17,11 +18,11 @@ describe("headlineGag", () => {
     document.documentElement.removeAttribute(headlineGagAttribute);
   });
 
-  it("arms the gag on every home page load", () => {
+  it("arms the gag on the first home page load of the session only", () => {
     expect(runGagScript()).toBe(true);
 
     document.documentElement.removeAttribute(headlineGagAttribute);
-    expect(runGagScript()).toBe(true);
+    expect(runGagScript()).toBe(false);
   });
 
   it("skips the gag with reduced motion or away from the home page", () => {
