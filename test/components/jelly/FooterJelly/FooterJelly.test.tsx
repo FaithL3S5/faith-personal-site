@@ -19,7 +19,7 @@ describe("FooterJelly", () => {
     await act(() => new Promise((resolve) => requestAnimationFrame(resolve)));
 
     const eyeUpdate = vi.mocked(anime.utils.set).mock.calls.at(-1)?.[1] as { translateX: number };
-    expect(eyeUpdate.translateX).toBeCloseTo(110);
+    expect(eyeUpdate.translateX).toBeCloseTo(200);
   });
 
   it("only blinks on touch screens", () => {

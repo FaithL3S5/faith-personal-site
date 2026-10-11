@@ -1,47 +1,46 @@
 import { act, fireEvent, render } from "@testing-library/react";
-import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+import { describe, expect, it } from "vitest";
 import { setMediaQueryMatches } from "@test/support/matchMedia";
 import { WaveBands } from "@/components/layout/WaveBands/WaveBands";
 import { reducedMotionQuery } from "@/lib/motion/reducedMotion";
 
-function readStates(container: HTMLElement) {
-  return [...container.querySelectorAll("span")].map((band) => band.getAttribute("data-wave-state"));
+function scrollTo(scrollY: number) {
+  Object.defineProperty(window, "scrollY", { value: scrollY, configurable: true });
+  fireEvent.scroll(window);
+}
+
+async function nextFrame() {
+  await act(() => new Promise((resolve) => requestAnimationFrame(resolve)));
+}
+
+function wavefronts(container: HTMLElement) {
+  return [...container.querySelectorAll("span")].map((band) => parseFloat(band.style.getPropertyValue("--wave-front")));
 }
 
 describe("WaveBands", () => {
-  beforeEach(() => {
-    vi.useFakeTimers();
-  });
-
-  afterEach(() => {
-    vi.useRealTimers();
-  });
-
-  it("rests faint, shows while scrolling, and rests again a second after scrolling stops", () => {
+  it("pours the wave down while scrolling down and pulls it back up while scrolling up", async () => {
+    scrollTo(0);
     const { container, unmount } = render(<WaveBands leftClassName="left" rightClassName="right" />);
-    expect(readStates(container)).toEqual(["resting", "resting"]);
+    const bands = [...container.querySelectorAll("span")];
+    expect(bands.every((band) => band.hasAttribute("data-wave-masked"))).toBe(true);
+    expect(wavefronts(container)).toEqual([0, 0]);
 
-    fireEvent.scroll(window);
-    expect(readStates(container)).toEqual(["scrolling", "scrolling"]);
+    scrollTo(200);
+    await nextFrame();
+    const filledFront = wavefronts(container)[0];
+    expect(filledFront).toBeGreaterThan(0);
 
-    act(() => {
-      vi.advanceTimersByTime(999);
-    });
-    expect(readStates(container)).toEqual(["scrolling", "scrolling"]);
-
-    act(() => {
-      vi.advanceTimersByTime(1);
-    });
-    expect(readStates(container)).toEqual(["resting", "resting"]);
+    scrollTo(100);
+    await nextFrame();
+    expect(wavefronts(container)[0]).toBeLessThan(filledFront);
 
     unmount();
+    expect(bands.every((band) => !band.hasAttribute("data-wave-masked"))).toBe(true);
   });
 
-  it("stays at full strength with reduced motion", () => {
+  it("shows the whole wave with reduced motion", () => {
     setMediaQueryMatches(reducedMotionQuery, true);
     const { container } = render(<WaveBands leftClassName="left" rightClassName="right" />);
-
-    fireEvent.scroll(window);
-    expect(readStates(container)).toEqual([null, null]);
+    expect(container.querySelector("[data-wave-masked]")).toBeNull();
   });
 });

@@ -9,7 +9,7 @@ import { RoundEyes } from "../JellyFigure/JellyEyes";
 import { JellyFigure } from "../JellyFigure/JellyFigure";
 import { eyeCenters } from "../JellyFigure/jellyShapes";
 
-const maxEyeOffset = 110;
+const eyeBounds = { horizontal: 200, up: 110, down: 320 };
 const finePointerQuery = "(pointer: fine)";
 
 export function FooterJelly({ className }: { className: string }) {
@@ -30,7 +30,7 @@ export function FooterJelly({ className }: { className: string }) {
       const offset = clampEyeOffset(
         (latestPointer.x - (bounds.left + bounds.width / 2)) * unitsPerPixel * 0.2,
         (latestPointer.y - (bounds.top + bounds.height / 2)) * unitsPerPixel * 0.2,
-        maxEyeOffset,
+        eyeBounds,
       );
       utils.set(eyes, { translateX: offset.x, translateY: offset.y });
     };

@@ -1,4 +1,4 @@
-import { JellyImage } from "@/components/jelly/JellyImage/JellyImage";
+import { NdaJelly } from "@/components/jelly/NdaJelly/NdaJelly";
 import { ndaNote } from "@/content/home";
 import styles from "./styles/NdaNote.module.css";
 
@@ -10,7 +10,7 @@ export function NdaNote() {
         <p className={styles.kicker}>Under NDA</p>
         <p className={styles.body}>{ndaNote}</p>
       </div>
-      <JellyImage pose="mir-eyebrow_raised" alt="Jelly raising an eyebrow" className={styles.jelly} />
+      <NdaJelly className={styles.jelly} />
     </div>
   );
 }

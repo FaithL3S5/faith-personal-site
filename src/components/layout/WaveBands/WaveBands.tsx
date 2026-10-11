@@ -2,8 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import { prefersReducedMotion } from "@/lib/motion/reducedMotion";
-
-const restAfterScrollMs = 1000;
+import { nextWaveFill, waveFrontInBand } from "@/lib/motion/waveFill";
 
 type WaveBandsProps = {
   leftClassName: string;
@@ -20,22 +19,33 @@ export function WaveBands({ leftClassName, rightClassName }: WaveBandsProps) {
     );
     if (prefersReducedMotion()) return;
 
-    const setWaveState = (state: "resting" | "scrolling") =>
-      bands.forEach((band) => band.setAttribute("data-wave-state", state));
-    let restTimeout: ReturnType<typeof setTimeout> | undefined;
+    let fill = 0;
+    let lastScrollY = window.scrollY;
+    let frameId = 0;
 
-    const showWhileScrolling = () => {
-      setWaveState("scrolling");
-      clearTimeout(restTimeout);
-      restTimeout = setTimeout(() => setWaveState("resting"), restAfterScrollMs);
+    const applyFill = () => {
+      frameId = 0;
+      bands.forEach((band) => {
+        const front = waveFrontInBand(band.getBoundingClientRect().top, fill, window.innerHeight);
+        band.style.setProperty("--wave-front", `${front}px`);
+      });
+    };
+    const followScroll = () => {
+      fill = nextWaveFill(fill, window.scrollY - lastScrollY, window.innerHeight);
+      lastScrollY = window.scrollY;
+      if (!frameId) frameId = requestAnimationFrame(applyFill);
     };
 
-    setWaveState("resting");
-    window.addEventListener("scroll", showWhileScrolling, { passive: true });
+    bands.forEach((band) => band.setAttribute("data-wave-masked", ""));
+    applyFill();
+    window.addEventListener("scroll", followScroll, { passive: true });
     return () => {
-      clearTimeout(restTimeout);
-      window.removeEventListener("scroll", showWhileScrolling);
-      bands.forEach((band) => band.removeAttribute("data-wave-state"));
+      cancelAnimationFrame(frameId);
+      window.removeEventListener("scroll", followScroll);
+      bands.forEach((band) => {
+        band.removeAttribute("data-wave-masked");
+        band.style.removeProperty("--wave-front");
+      });
     };
   }, []);
 

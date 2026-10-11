@@ -8,10 +8,18 @@ describe("jellyMotion", () => {
   });
 
   it("keeps small eye offsets and clamps large ones to the face", () => {
-    expect(clampEyeOffset(30, 40, 110)).toEqual({ x: 30, y: 40 });
-    const clamped = clampEyeOffset(300, 400, 110);
-    expect(Math.hypot(clamped.x, clamped.y)).toBeCloseTo(110);
+    const bounds = { horizontal: 200, up: 110, down: 320 };
+    expect(clampEyeOffset(30, 40, bounds)).toEqual({ x: 30, y: 40 });
+
+    const clamped = clampEyeOffset(3000, 4000, bounds);
+    expect(Math.hypot(clamped.x / 200, clamped.y / 320)).toBeCloseTo(1);
     expect(clamped.x / clamped.y).toBeCloseTo(0.75);
+  });
+
+  it("lets the eyes travel further down than up", () => {
+    const bounds = { horizontal: 200, up: 110, down: 320 };
+    expect(clampEyeOffset(0, 5000, bounds).y).toBeCloseTo(320);
+    expect(clampEyeOffset(0, -5000, bounds).y).toBeCloseTo(-110);
   });
 
   it("drifts somewhere between half and the full offset", () => {

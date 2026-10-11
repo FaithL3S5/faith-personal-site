@@ -6,11 +6,13 @@ export function nextBlinkDelayMs(random: () => number = Math.random): number {
 
 export type EyeOffset = { x: number; y: number };
 
-export function clampEyeOffset(deltaX: number, deltaY: number, maxOffset: number): EyeOffset {
-  const distance = Math.hypot(deltaX, deltaY);
-  if (distance <= maxOffset) return { x: deltaX, y: deltaY };
-  const scale = maxOffset / distance;
-  return { x: deltaX * scale, y: deltaY * scale };
+export type EyeBounds = { horizontal: number; up: number; down: number };
+
+export function clampEyeOffset(deltaX: number, deltaY: number, bounds: EyeBounds): EyeOffset {
+  const verticalBound = deltaY < 0 ? bounds.up : bounds.down;
+  const reach = Math.hypot(deltaX / bounds.horizontal, deltaY / verticalBound);
+  if (reach <= 1) return { x: deltaX, y: deltaY };
+  return { x: deltaX / reach, y: deltaY / reach };
 }
 
 export function randomEyeOffset(maxOffset: number, random: () => number = Math.random): EyeOffset {

@@ -7,19 +7,12 @@
     --visible-width: calc((100% - var(--page-max)) / 2 + 2.5rem);
     --tree-width: max(20rem, var(--visible-width));
     position: absolute;
+    right: calc(var(--visible-width) - var(--tree-width) - 1.5rem);
     bottom: -1.25rem;
     display: block;
     width: var(--tree-width);
     height: auto;
     pointer-events: none;
-  }
-
-  .leftTree {
-    left: calc(var(--visible-width) - var(--tree-width) - 1.5625rem);
-  }
-
-  .rightTree {
-    right: calc(var(--visible-width) - var(--tree-width) - 1.5rem);
     scale: -1 1;
   }
 }

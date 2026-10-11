@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-export type StaticJellyPose = "mir-eyebrow_raised" | "surprised" | "eyes_closed";
+export type StaticJellyPose = "surprised" | "eyes_closed";
 
 type JellyImageProps = {
   pose: StaticJellyPose;
