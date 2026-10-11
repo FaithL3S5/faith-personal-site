@@ -41,30 +41,33 @@
 @media (min-width: 48rem) {
   .content {
     display: grid;
-    grid-template-columns: auto minmax(0, 1fr);
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-rows: auto 1fr auto;
     grid-template-areas:
-      "paragraph paragraph"
-      "improving improving"
-      "computer plate";
-    align-items: end;
+      "paragraph computer"
+      "improving computer"
+      "plate plate";
+    align-items: start;
     gap: 1.5rem;
     padding: 2.5rem var(--gutter) 2.75rem;
   }
 
   .paragraph {
     grid-area: paragraph;
+    margin-top: -0.4375rem;
     font-size: 1.5625rem;
     line-height: 1.38;
   }
 
   .improving {
     grid-area: improving;
+    align-self: end;
   }
 
   .computer {
     grid-area: computer;
     width: 20.625rem;
-    margin: 0 0 -1.25rem -4.375rem;
+    margin: 0;
   }
 
   .plate {
