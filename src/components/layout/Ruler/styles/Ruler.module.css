@@ -2,8 +2,6 @@
   position: sticky;
   top: 0;
   z-index: 10;
-  border-bottom: 1px solid var(--ink);
-  background: var(--paper);
 }
 
 .scale {
@@ -11,10 +9,12 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  height: 1.375rem;
+  height: calc(1.375rem + 1px);
   max-width: var(--page-max);
   margin: 0 auto;
   padding: 0.1875rem var(--gutter) 0;
+  border-bottom: 1px solid var(--ink);
+  background-color: var(--paper);
   background-image: repeating-linear-gradient(
     90deg,
     var(--ink) 0,
@@ -44,7 +44,7 @@
 
 @media (min-width: 48rem) {
   .scale {
-    height: 1.5rem;
+    height: calc(1.5rem + 1px);
   }
 
   .label[data-tick="5"],

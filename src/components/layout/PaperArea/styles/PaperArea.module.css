@@ -1,0 +1,47 @@
+.paperArea {
+  position: relative;
+}
+
+.waveBand {
+  display: none;
+}
+
+@media (min-width: 125rem) {
+  .waveBand {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    display: block;
+    width: calc((100% - var(--page-max)) / 4);
+    pointer-events: none;
+  }
+
+  .leftBand {
+    left: 0;
+  }
+
+  .rightBand {
+    right: 0;
+  }
+
+  .drawn {
+    background-repeat: repeat-y;
+    background-size: min(100%, max(8.75rem, 80%)) auto;
+  }
+
+  .drawn.leftBand {
+    background-image: url("/decor/wave-side-left.svg");
+    background-position: left top;
+  }
+
+  .drawn.rightBand {
+    background-image: url("/decor/wave-side-right.svg");
+    background-position: right top;
+  }
+
+  .pattern {
+    background-image: url("/decor/wave-seigaiha.svg");
+    background-repeat: repeat;
+    background-size: 1.75rem 0.875rem;
+  }
+}

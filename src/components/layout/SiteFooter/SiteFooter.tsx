@@ -7,12 +7,14 @@ import { RevealGroup } from "@/components/ui/RevealGroup/RevealGroup";
 import { copyrightLine, offDutyTagline } from "@/content/footer";
 import { links } from "@/content/site";
 import { Colophon } from "../Colophon/Colophon";
+import { FooterTrees } from "../FooterTrees/FooterTrees";
 import styles from "./styles/SiteFooter.module.css";
 
 export function SiteFooter() {
   return (
     <footer className={styles.footer}>
       <div aria-hidden="true" className={styles.stripe} />
+      <FooterTrees />
       <RevealGroup playKey="footer" trigger="view" staggerMs={80} className={styles.columns}>
         <div className={styles.identity} data-reveal-item="">
           <div>

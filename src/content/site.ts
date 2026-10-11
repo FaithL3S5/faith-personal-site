@@ -2,6 +2,10 @@ export const siteUrl = "https://faith-personal-site.vercel.app";
 
 export const siteTitle = "Faith, full-stack developer";
 
+export type WideScreenWave = "drawn" | "pattern";
+
+export const wideScreenWave: WideScreenWave = "drawn";
+
 export const heroParagraph =
   "I build onboarding and video call systems for banking, end to end: Spring Boot and NestJS services, Next.js with Chakra UI on the front";
 

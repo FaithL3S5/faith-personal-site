@@ -1,0 +1,22 @@
+.tree {
+  display: none;
+}
+
+@media (min-width: 125rem) {
+  .tree {
+    position: absolute;
+    bottom: -1.25rem;
+    display: block;
+    width: calc((100% - var(--page-max)) / 2 + 2.5rem);
+    height: auto;
+    pointer-events: none;
+  }
+
+  .leftTree {
+    left: -1.5625rem;
+  }
+
+  .rightTree {
+    right: -1.5rem;
+  }
+}

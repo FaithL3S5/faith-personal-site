@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { BrushCircleSprite } from "@/components/ui/BrushCircle/BrushCircle";
 import { heroParagraph, siteTitle, siteUrl } from "@/content/site";
+import { PaperArea } from "@/components/layout/PaperArea/PaperArea";
 import { SiteFooter } from "@/components/layout/SiteFooter/SiteFooter";
 import { SkipLink } from "@/components/layout/SkipLink/SkipLink";
 import { fontVariableClassNames } from "@/styles/fonts";
@@ -34,7 +35,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <body>
         <SkipLink />
         <BrushCircleSprite />
-        {children}
+        <PaperArea>{children}</PaperArea>
         <SiteFooter />
       </body>
     </html>

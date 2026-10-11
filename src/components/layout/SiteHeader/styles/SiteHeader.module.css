@@ -1,5 +1,6 @@
 .header {
   --focus-ring: var(--white);
+  position: relative;
   background: var(--ink);
   color: var(--paper);
 }

@@ -6,6 +6,18 @@ export const factoryAttribution = {
   suffix: ", recoloured",
 } as const;
 
+export const treeAttribution = {
+  linkText: "Bonsai Vectors by Vecteezy",
+  href: "https://www.vecteezy.com/free-vector/bonsai",
+  suffix: ", recoloured",
+} as const;
+
+export const waveAttribution = {
+  linkText: "Japanese Wave Pattern Vectors by Vecteezy",
+  href: "https://www.vecteezy.com/free-vector/japanese-wave-pattern",
+  suffix: ", recoloured and rotated",
+} as const;
+
 export const computerAttribution = {
   work: {
     linkText: "Apple II Plus, Museum of the Moving Image",
