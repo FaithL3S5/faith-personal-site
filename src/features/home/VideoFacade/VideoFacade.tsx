@@ -1,6 +1,8 @@
 "use client";
 
+import Image from "next/image";
 import { useState } from "react";
+import videoPoster from "@/assets/video-poster.jpg";
 import { explainerVideo } from "@/content/site";
 import styles from "./styles/VideoFacade.module.css";
 
@@ -25,11 +27,16 @@ export function VideoFacade({ className }: { className?: string }) {
 
   return (
     <div className={`${frameClassName} ${styles.facade}`}>
+      <Image
+        src={videoPoster}
+        alt={explainerVideo.posterAlt}
+        sizes="(min-width: 75rem) 45rem, 100vw"
+        className={styles.poster}
+      />
       <span className={styles.label}>
         <span aria-hidden="true" className={styles.marker} />
         Portfolio explainer
       </span>
-      <span className={styles.source}>YouTube</span>
       <button
         type="button"
         className={styles.play}

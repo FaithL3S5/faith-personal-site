@@ -22,5 +22,7 @@ export const links = {
 export const explainerVideo = {
   embedUrl: "https://www.youtube-nocookie.com/embed/ngZXnUd034U?autoplay=1",
   title: 'Muhammad Fatih "Faith" Fahroji - Portfolio',
+  posterAlt:
+    "Cover slide of the explainer: Portfolio, an engineering portfolio presented by Muhammad Fatih Fahroji",
   duration: "08:55",
 } as const;

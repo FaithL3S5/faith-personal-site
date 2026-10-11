@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { BrushCircleSprite } from "@/components/ui/BrushCircle/BrushCircle";
 import { heroParagraph, siteTitle, siteUrl } from "@/content/site";
 import { SiteFooter } from "@/components/layout/SiteFooter/SiteFooter";
@@ -22,6 +22,10 @@ export const metadata: Metadata = {
     title: siteTitle,
     description: heroParagraph,
   },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#141414",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
