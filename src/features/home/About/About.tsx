@@ -9,9 +9,6 @@ export function About() {
   return (
     <SectionFrame sectionId="about" contentClassName={styles.content}>
       <div className={styles.textColumn}>
-        <p className={styles.paragraph} data-reveal-item="">
-          <span className={styles.paragraphLines}>{about.paragraph}</span>
-        </p>
         <Image
           src={computer}
           alt=""
@@ -20,6 +17,9 @@ export function About() {
           className={styles.computer}
           data-reveal-item=""
         />
+        <p className={styles.paragraph} data-reveal-item="">
+          <span className={styles.paragraphLines}>{about.paragraph}</span>
+        </p>
         <p className={styles.improving} data-reveal-item="">
           <span aria-hidden="true" className={styles.square} />
           {about.improving}
