@@ -49,13 +49,15 @@ export function SectionFrame({
       {decoration}
       <div className={styles.rail}>
         <BrushCircle className={styles.brush} />
-        <span aria-hidden="true" className={styles.number} data-count-up="">
-          {section.number}
-        </span>
-        <h2 id={titleId} className={styles.title}>
-          {section.label}
-        </h2>
-        <KanjiRuby kanji={section.kanji} romaji={section.romaji} className={styles.kanji} />
+        <div className={styles.heading}>
+          <span aria-hidden="true" className={styles.number} data-count-up="">
+            {section.number}
+          </span>
+          <h2 id={titleId} className={styles.title}>
+            {section.label}
+          </h2>
+          <KanjiRuby kanji={section.kanji} romaji={section.romaji} className={styles.kanji} />
+        </div>
         <SectionProgress currentNumber={section.number} className={styles.progress} />
         <span aria-hidden="true" className={styles.railBandLine} data-hairline="horizontal" />
         <span aria-hidden="true" className={styles.railDivider} data-hairline="vertical" />
