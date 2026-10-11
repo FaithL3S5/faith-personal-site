@@ -29,7 +29,13 @@
 }
 
 .jelly {
+  position: relative;
   width: 4rem;
+  transform-origin: center bottom;
+}
+
+.jelly[data-jumping] {
+  z-index: 5;
 }
 
 .status {

@@ -1,8 +1,6 @@
 "use client";
 
-import { JellyFigure } from "@/components/jelly/JellyFigure/JellyFigure";
-import { RoundEyes } from "@/components/jelly/JellyFigure/JellyEyes";
-import { eyeCenters } from "@/components/jelly/JellyFigure/jellyShapes";
+import { HeaderJelly } from "@/components/jelly/HeaderJelly/HeaderJelly";
 import { PillLink } from "@/components/ui/Pill/PillLink";
 import { links } from "@/content/site";
 import { useMenu } from "@/hooks/useMenu";
@@ -40,16 +38,7 @@ export function SiteHeader({ variant }: { variant: PageVariant }) {
         >
           Resume
         </PillLink>
-        {variant === "home" && (
-          <JellyFigure
-            facing="right"
-            isOutlined
-            label="Jelly, the mascot, looking around"
-            className={styles.jelly}
-          >
-            <RoundEyes centers={eyeCenters.rightNeutral} />
-          </JellyFigure>
-        )}
+        {variant === "home" && <HeaderJelly className={styles.jelly} />}
         <MenuButton isOpen={menu.isOpen} controlsId={menuPanelId} onToggle={menu.toggle} />
       </div>
       <MenuPanel id={menuPanelId} variant={variant} isOpen={menu.isOpen} onNavigate={menu.close} />

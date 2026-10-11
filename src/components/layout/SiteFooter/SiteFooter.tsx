@@ -1,6 +1,4 @@
-import { JellyFigure } from "@/components/jelly/JellyFigure/JellyFigure";
-import { RoundEyes } from "@/components/jelly/JellyFigure/JellyEyes";
-import { eyeCenters } from "@/components/jelly/JellyFigure/jellyShapes";
+import { FooterJelly } from "@/components/jelly/FooterJelly/FooterJelly";
 import { Arrow } from "@/components/ui/Arrow/Arrow";
 import { DotMatrix } from "@/components/ui/DotMatrix/DotMatrix";
 import { RevealGroup } from "@/components/ui/RevealGroup/RevealGroup";
@@ -24,9 +22,7 @@ export function SiteFooter() {
             </p>
           </div>
           <div className={styles.jellyRow}>
-            <JellyFigure facing="left" isOutlined label="Jelly looking up" className={styles.jelly}>
-              <RoundEyes centers={eyeCenters.leftLookingUp} />
-            </JellyFigure>
+            <FooterJelly className={styles.jelly} />
             <DotMatrix columns={10} rows={6} circleLeft={91} tone="paper" className={styles.mobileDots} />
             <DotMatrix columns={9} rows={6} circleLeft={77} tone="paper" className={styles.tabletDots} />
           </div>

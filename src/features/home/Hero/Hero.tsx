@@ -1,6 +1,4 @@
-import { JellyFigure } from "@/components/jelly/JellyFigure/JellyFigure";
-import { RoundEyes } from "@/components/jelly/JellyFigure/JellyEyes";
-import { eyeCenters } from "@/components/jelly/JellyFigure/jellyShapes";
+import { HeroJelly } from "@/components/jelly/HeroJelly/HeroJelly";
 import { DotMatrix } from "@/components/ui/DotMatrix/DotMatrix";
 import { Eyebrow } from "@/components/ui/Eyebrow/Eyebrow";
 import { PillLink } from "@/components/ui/Pill/PillLink";
@@ -39,9 +37,7 @@ export function Hero() {
           </PillLink>
         </div>
         <DotMatrix columns={11} rows={6} circleLeft={105} tone="ink" className={styles.dots} />
-        <JellyFigure facing="right" label="Jelly looking down at the page" className={styles.jelly}>
-          <RoundEyes centers={eyeCenters.rightLookingDown} />
-        </JellyFigure>
+        <HeroJelly className={styles.jelly} />
       </RevealGroup>
     </section>
   );

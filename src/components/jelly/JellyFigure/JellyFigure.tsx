@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import type { ReactNode, Ref } from "react";
 import { jellyOutlines, viewBoxes, type JellyFacing } from "./jellyShapes";
 import styles from "./styles/JellyFigure.module.css";
 
@@ -7,15 +7,17 @@ type JellyFigureProps = {
   isOutlined?: boolean;
   label?: string;
   className?: string;
+  ref?: Ref<SVGSVGElement>;
   children: ReactNode;
 };
 
-export function JellyFigure({ facing, isOutlined, label, className, children }: JellyFigureProps) {
+export function JellyFigure({ facing, isOutlined, label, className, ref, children }: JellyFigureProps) {
   const outline = jellyOutlines[facing];
   const accessibility = label ? { role: "img", "aria-label": label } : { "aria-hidden": true };
 
   return (
     <svg
+      ref={ref}
       viewBox={isOutlined ? viewBoxes.outlined : viewBoxes.plain}
       className={className ? `${styles.figure} ${className}` : styles.figure}
       {...accessibility}

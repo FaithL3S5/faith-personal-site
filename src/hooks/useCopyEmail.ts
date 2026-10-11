@@ -10,15 +10,16 @@ export function useCopyEmail(email: string) {
 
   useEffect(() => () => clearTimeout(resetTimeoutRef.current), []);
 
-  const copyEmail = useCallback(async () => {
+  const copyEmail = useCallback(async (): Promise<boolean> => {
     try {
       await navigator.clipboard.writeText(email);
     } catch {
-      return;
+      return false;
     }
     clearTimeout(resetTimeoutRef.current);
     setIsCopied(true);
     resetTimeoutRef.current = setTimeout(() => setIsCopied(false), copiedDurationMs);
+    return true;
   }, [email]);
 
   return { isCopied, copyEmail };
