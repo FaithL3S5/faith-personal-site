@@ -4,7 +4,7 @@
 
 @media (min-width: 118.75rem) {
   .tree {
-    --visible-width: calc((100% - var(--page-max)) / 2 + 2.5rem);
+    --visible-width: max(11.25rem, calc((100% - var(--page-max)) / 2 + 2.5rem));
     --tree-width: max(20rem, var(--visible-width));
     position: absolute;
     right: calc(var(--visible-width) - var(--tree-width) - 1.5rem);

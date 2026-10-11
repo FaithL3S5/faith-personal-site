@@ -9,8 +9,13 @@ import { RoundEyes } from "../JellyFigure/JellyEyes";
 import { JellyFigure } from "../JellyFigure/JellyFigure";
 import { eyeCenters } from "../JellyFigure/jellyShapes";
 
-const eyeBounds = { horizontal: 200, up: 110, down: 320 };
+const eyeBounds = { left: 560, right: 280, up: 110, down: 320 };
+const pointerFollowShare = 0.35;
 const finePointerQuery = "(pointer: fine)";
+const eyesCenter = {
+  x: (eyeCenters.leftLookingUp[0].x + eyeCenters.leftLookingUp[1].x) / 2,
+  y: (eyeCenters.leftLookingUp[0].y + eyeCenters.leftLookingUp[1].y) / 2,
+};
 
 export function FooterJelly({ className }: { className: string }) {
   const figureRef = useRef<SVGSVGElement>(null);
@@ -26,10 +31,13 @@ export function FooterJelly({ className }: { className: string }) {
     const updateEyes = () => {
       frameId = 0;
       const bounds = figure.getBoundingClientRect();
-      const unitsPerPixel = figure.viewBox.baseVal.width / bounds.width;
+      const viewBox = figure.viewBox.baseVal;
+      const unitsPerPixel = viewBox.width / bounds.width;
+      const pointerX = viewBox.x + (latestPointer.x - bounds.left) * unitsPerPixel;
+      const pointerY = viewBox.y + (latestPointer.y - bounds.top) * unitsPerPixel;
       const offset = clampEyeOffset(
-        (latestPointer.x - (bounds.left + bounds.width / 2)) * unitsPerPixel * 0.2,
-        (latestPointer.y - (bounds.top + bounds.height / 2)) * unitsPerPixel * 0.2,
+        (pointerX - eyesCenter.x) * pointerFollowShare,
+        (pointerY - eyesCenter.y) * pointerFollowShare,
         eyeBounds,
       );
       utils.set(eyes, { translateX: offset.x, translateY: offset.y });

@@ -18,14 +18,14 @@ describe("SiteHeader", () => {
     expect(screen.getByRole("link", { name: /^Faith logo/ }).getAttribute("href")).toBe("#top");
   });
 
-  it("points back home and hides Jelly on error pages", () => {
+  it("points back home and keeps Jelly on error pages", () => {
     render(<SiteHeader variant="error" />);
 
     const [desktopNav] = screen.getAllByRole("navigation", { name: "Sections" });
     expect(within(desktopNav).getByRole("link", { name: "Contact" }).getAttribute("href")).toBe(
       "/#contact",
     );
-    expect(screen.queryByRole("img", { name: /Jelly/ })).toBeNull();
+    expect(screen.getByRole("img", { name: "Jelly, the mascot, looking around" })).toBeTruthy();
   });
 
   it("downloads the resume in a new tab", () => {

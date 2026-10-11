@@ -7,17 +7,19 @@ describe("jellyMotion", () => {
     expect(nextBlinkDelayMs(() => 0.999)).toBeCloseTo(5997);
   });
 
-  it("keeps small eye offsets and clamps large ones to the face", () => {
-    const bounds = { horizontal: 200, up: 110, down: 320 };
+  const bounds = { left: 560, right: 280, up: 110, down: 320 };
+
+  it("keeps small eye offsets and clamps large ones to the body", () => {
     expect(clampEyeOffset(30, 40, bounds)).toEqual({ x: 30, y: 40 });
 
     const clamped = clampEyeOffset(3000, 4000, bounds);
-    expect(Math.hypot(clamped.x / 200, clamped.y / 320)).toBeCloseTo(1);
+    expect(Math.hypot(clamped.x / 280, clamped.y / 320)).toBeCloseTo(1);
     expect(clamped.x / clamped.y).toBeCloseTo(0.75);
   });
 
-  it("lets the eyes travel further down than up", () => {
-    const bounds = { horizontal: 200, up: 110, down: 320 };
+  it("gives each direction its own reach", () => {
+    expect(clampEyeOffset(-5000, 0, bounds).x).toBeCloseTo(-560);
+    expect(clampEyeOffset(5000, 0, bounds).x).toBeCloseTo(280);
     expect(clampEyeOffset(0, 5000, bounds).y).toBeCloseTo(320);
     expect(clampEyeOffset(0, -5000, bounds).y).toBeCloseTo(-110);
   });

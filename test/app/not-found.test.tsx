@@ -12,7 +12,6 @@ describe("NotFound", () => {
     expect(screen.getByText("/nowhere", { ignore: "[aria-hidden='true']" })).toBeTruthy();
     expect(screen.getByRole("img", { name: "Jelly, startled" })).toBeTruthy();
     expect(screen.getByRole("link", { name: "Back to home" }).getAttribute("href")).toBe("/");
-    expect(screen.queryByRole("img", { name: /looking around/ })).toBeNull();
     window.history.pushState({}, "", "/");
   });
 });

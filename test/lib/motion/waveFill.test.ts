@@ -1,15 +1,21 @@
 import { describe, expect, it } from "vitest";
-import { nextWaveFill, waveFrontInBand } from "@/lib/motion/waveFill";
+import { waveFillForScroll, waveFrontInBand } from "@/lib/motion/waveFill";
 
 describe("waveFill", () => {
-  it("fills as the page scrolls down and drains as it scrolls up", () => {
-    expect(nextWaveFill(0, 300, 800)).toBeCloseTo(0.5);
-    expect(nextWaveFill(0.5, -150, 800)).toBeCloseTo(0.25);
+  it("is empty at the top and fills over the first three quarters of a screen", () => {
+    expect(waveFillForScroll(0, 5000, 800)).toBe(0);
+    expect(waveFillForScroll(300, 5000, 800)).toBeCloseTo(0.5);
+    expect(waveFillForScroll(600, 5000, 800)).toBe(1);
+    expect(waveFillForScroll(3000, 5000, 800)).toBe(1);
   });
 
-  it("stays between empty and full", () => {
-    expect(nextWaveFill(0.9, 5000, 800)).toBe(1);
-    expect(nextWaveFill(0.1, -5000, 800)).toBe(0);
+  it("fills over whatever scroll a short page has", () => {
+    expect(waveFillForScroll(100, 200, 800)).toBeCloseTo(0.5);
+    expect(waveFillForScroll(200, 200, 800)).toBe(1);
+  });
+
+  it("is full on a page that cannot scroll", () => {
+    expect(waveFillForScroll(0, 0, 800)).toBe(1);
   });
 
   it("places the wave front below the top of the viewport by the fill share", () => {

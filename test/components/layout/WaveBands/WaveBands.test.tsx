@@ -1,41 +1,55 @@
 import { act, fireEvent, render } from "@testing-library/react";
-import { describe, expect, it } from "vitest";
+import { afterEach, beforeEach, describe, expect, it } from "vitest";
 import { setMediaQueryMatches } from "@test/support/matchMedia";
 import { WaveBands } from "@/components/layout/WaveBands/WaveBands";
 import { reducedMotionQuery } from "@/lib/motion/reducedMotion";
 
-function scrollTo(scrollY: number) {
-  Object.defineProperty(window, "scrollY", { value: scrollY, configurable: true });
-  fireEvent.scroll(window);
+function setScrollHeight(scrollHeight: number) {
+  Object.defineProperty(document.documentElement, "scrollHeight", { value: scrollHeight, configurable: true });
 }
 
-async function nextFrame() {
+async function scrollTo(scrollY: number) {
+  Object.defineProperty(window, "scrollY", { value: scrollY, configurable: true });
+  fireEvent.scroll(window);
   await act(() => new Promise((resolve) => requestAnimationFrame(resolve)));
 }
 
-function wavefronts(container: HTMLElement) {
-  return [...container.querySelectorAll("span")].map((band) => parseFloat(band.style.getPropertyValue("--wave-front")));
+function firstWaveFront(container: HTMLElement) {
+  return parseFloat((container.querySelector("span") as HTMLElement).style.getPropertyValue("--wave-front"));
 }
 
 describe("WaveBands", () => {
-  it("pours the wave down while scrolling down and pulls it back up while scrolling up", async () => {
-    scrollTo(0);
+  beforeEach(() => {
+    Object.defineProperty(window, "innerHeight", { value: 800, configurable: true });
+    Object.defineProperty(window, "scrollY", { value: 0, configurable: true });
+  });
+
+  afterEach(() => {
+    setScrollHeight(0);
+  });
+
+  it("is empty at the top, pours in while scrolling down, and drains at the same pace going up", async () => {
+    setScrollHeight(5000);
     const { container, unmount } = render(<WaveBands leftClassName="left" rightClassName="right" />);
     const bands = [...container.querySelectorAll("span")];
     expect(bands.every((band) => band.hasAttribute("data-wave-masked"))).toBe(true);
-    expect(wavefronts(container)).toEqual([0, 0]);
+    expect(firstWaveFront(container)).toBe(0);
 
-    scrollTo(200);
-    await nextFrame();
-    const filledFront = wavefronts(container)[0];
-    expect(filledFront).toBeGreaterThan(0);
+    await scrollTo(300);
+    expect(firstWaveFront(container)).toBe(400);
 
-    scrollTo(100);
-    await nextFrame();
-    expect(wavefronts(container)[0]).toBeLessThan(filledFront);
+    await scrollTo(0);
+    expect(firstWaveFront(container)).toBe(0);
 
     unmount();
     expect(bands.every((band) => !band.hasAttribute("data-wave-masked"))).toBe(true);
+  });
+
+  it("is drawn straight away when the page loads part way down", () => {
+    setScrollHeight(5000);
+    Object.defineProperty(window, "scrollY", { value: 2000, configurable: true });
+    const { container } = render(<WaveBands leftClassName="left" rightClassName="right" />);
+    expect(firstWaveFront(container)).toBe(800);
   });
 
   it("shows the whole wave with reduced motion", () => {

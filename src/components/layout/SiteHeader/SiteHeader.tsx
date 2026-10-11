@@ -38,7 +38,7 @@ export function SiteHeader({ variant }: { variant: PageVariant }) {
         >
           Resume
         </PillLink>
-        {variant === "home" && <HeaderJelly className={styles.jelly} />}
+        <HeaderJelly className={styles.jelly} />
         <MenuButton isOpen={menu.isOpen} controlsId={menuPanelId} onToggle={menu.toggle} />
       </div>
       <MenuPanel id={menuPanelId} variant={variant} isOpen={menu.isOpen} onNavigate={menu.close} />
