@@ -1,12 +1,13 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { prefersReducedMotion } from "@/lib/motion/reducedMotion";
 
 export function useInlineSvg(url: string, shouldLoad: boolean): string | null {
   const [markup, setMarkup] = useState<string | null>(null);
 
   useEffect(() => {
-    if (!shouldLoad || markup) return;
+    if (!shouldLoad || markup || prefersReducedMotion()) return;
     let isCancelled = false;
 
     fetch(url)
