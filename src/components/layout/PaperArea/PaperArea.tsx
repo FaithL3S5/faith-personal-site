@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import { wideScreenWave } from "@/content/site";
+import { WaveBands } from "../WaveBands/WaveBands";
 import styles from "./styles/PaperArea.module.css";
 
 export function PaperArea({ children }: { children: ReactNode }) {
@@ -7,8 +8,10 @@ export function PaperArea({ children }: { children: ReactNode }) {
 
   return (
     <div className={styles.paperArea}>
-      <span aria-hidden="true" className={`${styles.waveBand} ${styles.leftBand} ${waveClassName}`} />
-      <span aria-hidden="true" className={`${styles.waveBand} ${styles.rightBand} ${waveClassName}`} />
+      <WaveBands
+        leftClassName={`${styles.waveBand} ${styles.leftBand} ${waveClassName}`}
+        rightClassName={`${styles.waveBand} ${styles.rightBand} ${waveClassName}`}
+      />
       {children}
     </div>
   );

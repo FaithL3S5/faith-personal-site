@@ -2,21 +2,24 @@
   display: none;
 }
 
-@media (min-width: 125rem) {
+@media (min-width: 118.75rem) {
   .tree {
+    --visible-width: calc((100% - var(--page-max)) / 2 + 2.5rem);
+    --tree-width: max(20rem, var(--visible-width));
     position: absolute;
     bottom: -1.25rem;
     display: block;
-    width: calc((100% - var(--page-max)) / 2 + 2.5rem);
+    width: var(--tree-width);
     height: auto;
     pointer-events: none;
   }
 
   .leftTree {
-    left: -1.5625rem;
+    left: calc(var(--visible-width) - var(--tree-width) - 1.5625rem);
   }
 
   .rightTree {
-    right: -1.5rem;
+    right: calc(var(--visible-width) - var(--tree-width) - 1.5rem);
+    scale: -1 1;
   }
 }

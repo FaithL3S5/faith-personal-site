@@ -6,7 +6,7 @@
   display: none;
 }
 
-@media (min-width: 125rem) {
+@media (min-width: 118.75rem) {
   .waveBand {
     position: absolute;
     top: 0;
@@ -14,6 +14,11 @@
     display: block;
     width: calc((100% - var(--page-max)) / 4);
     pointer-events: none;
+    transition: opacity var(--dur-base) var(--ease-out);
+  }
+
+  .waveBand[data-wave-state="resting"] {
+    opacity: 0.25;
   }
 
   .leftBand {
@@ -26,17 +31,17 @@
 
   .drawn {
     background-repeat: repeat-y;
-    background-size: min(100%, max(8.75rem, 80%)) auto;
+    background-size: max(8.75rem, 80%) auto;
   }
 
   .drawn.leftBand {
     background-image: url("/decor/wave-side-left.svg");
-    background-position: left top;
+    background-position: min(0%, 100%) top;
   }
 
   .drawn.rightBand {
     background-image: url("/decor/wave-side-right.svg");
-    background-position: right top;
+    background-position: max(0%, 100%) top;
   }
 
   .pattern {

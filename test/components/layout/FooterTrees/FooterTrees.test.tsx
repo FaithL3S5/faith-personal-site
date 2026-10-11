@@ -9,7 +9,7 @@ describe("FooterTrees", () => {
     const trees = [...container.querySelectorAll("img")];
     expect(trees.map((tree) => tree.getAttribute("alt"))).toEqual(["", ""]);
     expect(trees.every((tree) => tree.getAttribute("aria-hidden") === "true")).toBe(true);
-    expect(trees[0].getAttribute("src")).toContain("tree-1-white.svg");
-    expect(trees[1].getAttribute("src")).toContain("tree-2-white.svg");
+    expect(trees[0].getAttribute("src")).toContain("tree-2-white.svg");
+    expect(trees[1].getAttribute("src")).toContain("tree-1-white.svg");
   });
 });
