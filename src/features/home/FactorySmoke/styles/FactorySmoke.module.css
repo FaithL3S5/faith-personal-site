@@ -1,0 +1,41 @@
+.smoke {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  filter: blur(0.1875rem);
+  pointer-events: none;
+}
+
+.puff {
+  fill: var(--soft-line);
+  opacity: 0;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation-name: puff-rise;
+  animation-timing-function: ease-out;
+  animation-iteration-count: infinite;
+}
+
+@keyframes puff-rise {
+  0% {
+    opacity: 0;
+    transform: translate(0, 0) scale(0.4);
+  }
+
+  15% {
+    opacity: 0.6;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(18px, -90px) scale(1.9);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .puff {
+    animation: none;
+  }
+}

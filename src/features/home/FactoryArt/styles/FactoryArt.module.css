@@ -1,4 +1,158 @@
-.factory {
+.frame {
+  position: relative;
+  aspect-ratio: 1790 / 1407;
+}
+
+.art {
   display: block;
+  width: 100%;
   height: auto;
+}
+
+.art :global(svg) {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.frame:not([data-playing]) * {
+  animation-play-state: paused;
+}
+
+.frame :global(#grey-truck) {
+  animation: grey-truck-route 16s ease-in-out infinite;
+}
+
+.frame :global(#grey-mini-truck) {
+  animation: mini-truck-route 16s ease-in-out infinite;
+}
+
+.frame :global(#red-truck-1),
+.frame :global(#red-truck-2) {
+  animation: idle-shudder 5s linear infinite;
+}
+
+.frame :global(#red-truck-2) {
+  animation-duration: 6.5s;
+  animation-delay: -2s;
+}
+
+.frame :global(#big-grey-building-window-1),
+.frame :global(#big-grey-building-window-2),
+.frame :global(#small-grey-building-window-1),
+.frame :global(#tall-grey-building-1-window-2),
+.frame :global(#red-building-1-window-1),
+.frame :global(#red-building-1-window-3) {
+  animation: window-glow 9s ease-in-out infinite;
+}
+
+.frame :global(#big-grey-building-window-2) {
+  animation-duration: 11s;
+  animation-delay: -3s;
+}
+
+.frame :global(#small-grey-building-window-1) {
+  animation-duration: 7s;
+  animation-delay: -5s;
+}
+
+.frame :global(#tall-grey-building-1-window-2) {
+  animation-duration: 13s;
+  animation-delay: -8s;
+}
+
+.frame :global(#red-building-1-window-1) {
+  animation-duration: 8s;
+  animation-delay: -1s;
+}
+
+.frame :global(#red-building-1-window-3) {
+  animation-duration: 10s;
+  animation-delay: -6s;
+}
+
+@keyframes grey-truck-route {
+  0%,
+  25% {
+    transform: translate(0, 0);
+  }
+
+  44%,
+  62% {
+    transform: translate(-61px, 35px);
+  }
+
+  81%,
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+@keyframes mini-truck-route {
+  0%,
+  12% {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+
+  24% {
+    opacity: 1;
+    transform: translate(-182px, 105px);
+  }
+
+  31%,
+  75% {
+    opacity: 0;
+    transform: translate(-260px, 150px);
+  }
+
+  82% {
+    opacity: 1;
+    transform: translate(-182px, 105px);
+  }
+
+  94%,
+  100% {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+}
+
+@keyframes idle-shudder {
+  0%,
+  88%,
+  100% {
+    transform: translate(0, 0);
+  }
+
+  90% {
+    transform: translate(0, -1.5px);
+  }
+
+  92% {
+    transform: translate(0, 0.5px);
+  }
+
+  94% {
+    transform: translate(0, -1px);
+  }
+}
+
+@keyframes window-glow {
+  0%,
+  70%,
+  100% {
+    filter: none;
+  }
+
+  78%,
+  90% {
+    filter: brightness(1.3);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .frame * {
+    animation: none;
+  }
 }
