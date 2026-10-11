@@ -36,6 +36,7 @@
 }
 
 .improving {
+  clear: both;
   margin-top: 1.125rem;
   color: var(--muted);
 }
