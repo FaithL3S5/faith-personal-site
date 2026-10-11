@@ -17,18 +17,13 @@ describe("HeroJelly", () => {
     vi.useRealTimers();
   });
 
-  it("loops looking down, then neutral, then looking down again", () => {
+  it("keeps looking down while he blinks", () => {
     render(<HeroJelly className="jelly" />);
     act(() => triggerIntersection(screen.getByRole("img"), true));
     expect(firstEyeY()).toBe(eyeCenters.rightLookingDown[0].y);
 
     act(() => {
-      vi.advanceTimersByTime(4000);
-    });
-    expect(firstEyeY()).toBe(eyeCenters.rightNeutral[0].y);
-
-    act(() => {
-      vi.advanceTimersByTime(2600);
+      vi.advanceTimersByTime(10000);
     });
     expect(firstEyeY()).toBe(eyeCenters.rightLookingDown[0].y);
   });
