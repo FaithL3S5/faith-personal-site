@@ -35,7 +35,7 @@ export function HeroHeadline({ className }: { className: string }) {
       </span>
       {isHeadlineGagEnabled && (
         <span aria-hidden="true" className={styles.gagLayer}>
-          <span className={styles.line}>
+          <span key={gagStage} className={styles.line}>
             {beforeCursor}
             {isCursorVisible && (
               <span className={gagStage === "corrected" ? `${styles.cursor} ${styles.blinking}` : styles.cursor} />
