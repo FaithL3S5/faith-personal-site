@@ -1,8 +1,6 @@
 export const headlineGagAttribute = "data-headline-gag";
 
-const playedStorageKey = "headline-gag-played";
-
-export const headlineGagScript = `try{if(location.pathname==="/"&&!sessionStorage.getItem("${playedStorageKey}")&&!matchMedia("(prefers-reduced-motion: reduce)").matches){document.documentElement.setAttribute("${headlineGagAttribute}","");sessionStorage.setItem("${playedStorageKey}","1")}}catch(e){}`;
+export const headlineGagScript = `if(location.pathname==="/"&&!matchMedia("(prefers-reduced-motion: reduce)").matches){document.documentElement.setAttribute("${headlineGagAttribute}","")}`;
 
 export type HeadlineGagStage = "typo" | "cursor" | "deleted" | "corrected" | "done";
 

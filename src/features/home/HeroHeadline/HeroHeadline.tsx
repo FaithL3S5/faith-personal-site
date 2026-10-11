@@ -25,10 +25,7 @@ export function HeroHeadline({ className }: { className: string }) {
         if (stage === "done") root.removeAttribute(headlineGagAttribute);
       }, atMs),
     );
-    return () => {
-      timeouts.forEach(clearTimeout);
-      root.removeAttribute(headlineGagAttribute);
-    };
+    return () => timeouts.forEach(clearTimeout);
   }, []);
 
   return (

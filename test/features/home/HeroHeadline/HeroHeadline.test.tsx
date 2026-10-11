@@ -1,3 +1,4 @@
+import { StrictMode } from "react";
 import { act, render, screen } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { HeroHeadline } from "@/features/home/HeroHeadline/HeroHeadline";
@@ -41,6 +42,21 @@ describe("HeroHeadline", () => {
       vi.advanceTimersByTime(1000);
     });
     expect(document.documentElement.hasAttribute(headlineGagAttribute)).toBe(false);
+  });
+
+  it("still plays when strict mode reruns the effect", () => {
+    document.documentElement.setAttribute(headlineGagAttribute, "");
+    const { container } = render(
+      <StrictMode>
+        <HeroHeadline className="title" />
+      </StrictMode>,
+    );
+
+    act(() => {
+      vi.advanceTimersByTime(1800);
+    });
+    expect(gagText(container)).toBe("FULL-STACKDEVELOPER");
+    expect(document.documentElement.hasAttribute(headlineGagAttribute)).toBe(true);
   });
 
   it("does nothing when the gag is not armed", () => {
