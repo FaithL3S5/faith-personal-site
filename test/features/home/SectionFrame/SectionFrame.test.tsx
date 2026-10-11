@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import { beforeEach, describe, expect, it } from "vitest";
+import { beforeEach, describe, expect, it, vi } from "vitest";
 import { triggerIntersection } from "@test/support/intersectionObserver";
 import { setMediaQueryMatches } from "@test/support/matchMedia";
 import { SectionFrame } from "@/features/home/SectionFrame/SectionFrame";
@@ -68,6 +68,20 @@ describe("SectionFrame", () => {
     unmount();
     const remounted = renderStackFrame();
     expect(remounted.getByText("Body").style.opacity).toBe("");
+  });
+
+  it("holds the number at its final width while it counts up", () => {
+    const { container, unmount } = renderStackFrame();
+    const number = container.querySelector<HTMLElement>("[data-count-up]") as HTMLElement;
+    vi.spyOn(number, "getBoundingClientRect").mockReturnValue({ width: 96 } as DOMRect);
+
+    triggerIntersection(container.querySelector("section") as Element, true);
+    expect(number.style.width).toBe("96px");
+    expect(number.textContent).toBe("00");
+
+    unmount();
+    expect(number.style.width).toBe("");
+    expect(number.textContent).toBe("04");
   });
 
   it("keeps everything at rest with reduced motion", () => {

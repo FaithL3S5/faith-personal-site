@@ -32,7 +32,7 @@ export function useSectionReveal(
     if (!section || hasPlayed(playKey) || prefersReducedMotion()) return;
 
     const railSelector = selectors.railItems.join(", ");
-    const countUpElement = section.querySelector(selectors.countUpNumber);
+    const countUpElement = section.querySelector<HTMLElement>(selectors.countUpNumber);
     const finalNumber = Number(sectionNumber);
 
     const scope = createScope({ root: section }).add((self) => {
@@ -61,6 +61,7 @@ export function useSectionReveal(
 
         if (!countUpElement) return;
         const counter = { value: 0 };
+        countUpElement.style.width = `${countUpElement.getBoundingClientRect().width}px`;
         countUpElement.textContent = twoDigits(0);
         animate(counter, {
           value: finalNumber,
@@ -69,6 +70,9 @@ export function useSectionReveal(
           modifier: Math.round,
           onUpdate: () => {
             countUpElement.textContent = twoDigits(counter.value);
+          },
+          onComplete: () => {
+            countUpElement.style.width = "";
           },
         });
       });
@@ -87,7 +91,9 @@ export function useSectionReveal(
     return () => {
       observer.disconnect();
       scope.revert();
-      if (countUpElement) countUpElement.textContent = sectionNumber;
+      if (!countUpElement) return;
+      countUpElement.textContent = sectionNumber;
+      countUpElement.style.width = "";
     };
   }, [sectionRef, sectionNumber, selectors]);
 }

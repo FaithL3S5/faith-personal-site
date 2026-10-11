@@ -24,6 +24,5 @@
 }
 
 .marker[data-flipped] .label {
-  left: auto;
-  right: 0.3125rem;
+  translate: calc(-100% - 0.625rem + 2px) 0;
 }
