@@ -2,7 +2,6 @@ import { PillLink } from "@/components/ui/Pill/PillLink";
 import { experienceEntries } from "@/content/home";
 import { links } from "@/content/site";
 import { ExperienceRow } from "../ExperienceRow/ExperienceRow";
-import { FactoryArt } from "../FactoryArt/FactoryArt";
 import { SectionFrame } from "../SectionFrame/SectionFrame";
 import styles from "./styles/Experience.module.css";
 
@@ -26,7 +25,6 @@ export function Experience() {
           ))}
         </ol>
       </div>
-      <FactoryArt placement="experience" />
       <div className={styles.actions} data-reveal-item="">
         <PillLink href={links.resume} variant="primary" arrow="download" isExternal stretchOnMobile>
           Resume, PDF

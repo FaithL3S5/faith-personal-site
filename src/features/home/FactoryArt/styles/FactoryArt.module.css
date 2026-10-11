@@ -2,25 +2,3 @@
   display: block;
   height: auto;
 }
-
-.experience {
-  align-self: center;
-  width: 100%;
-  max-width: 22rem;
-  margin: -0.375rem 0;
-}
-
-.stack {
-  display: none;
-  width: 100%;
-}
-
-@media (min-width: 44rem) {
-  .experience {
-    display: none;
-  }
-
-  .stack {
-    display: block;
-  }
-}

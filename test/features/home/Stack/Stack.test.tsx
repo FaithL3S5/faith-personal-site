@@ -19,4 +19,14 @@ describe("Stack", () => {
     const learningList = screen.getAllByRole("list").at(-1) as HTMLElement;
     expect(within(learningList).getByText("Go")).toBeTruthy();
   });
+
+  it("places the factory between the daily tiers and the extra tiers", () => {
+    const { container } = render(<Stack />);
+
+    const factory = container.querySelector("img[src*='factory.svg']") as Element;
+    const lastDailyTier = screen.getByRole("heading", { name: "Queues and jobs" });
+    const firstExtraTier = screen.getByRole("heading", { name: "Also worked with" });
+    expect(lastDailyTier.compareDocumentPosition(factory) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+    expect(factory.compareDocumentPosition(firstExtraTier) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+  });
 });

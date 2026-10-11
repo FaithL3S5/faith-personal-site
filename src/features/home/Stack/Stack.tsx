@@ -7,16 +7,12 @@ import styles from "./styles/Stack.module.css";
 export function Stack() {
   return (
     <SectionFrame sectionId="stack" contentClassName={styles.content}>
-      <div className={styles.daily}>
-        <div className={styles.dailyTiers}>
-          {dailyStackTiers.map((tier) => (
-            <StackTier key={tier.label} tier={tier} />
-          ))}
-        </div>
-        <div aria-hidden="true" className={styles.factoryCell}>
-          <FactoryArt placement="stack" />
-        </div>
+      <div className={styles.dailyTiers}>
+        {dailyStackTiers.map((tier) => (
+          <StackTier key={tier.label} tier={tier} />
+        ))}
       </div>
+      <FactoryArt className={styles.factory} />
       <div className={styles.extraTiers}>
         {extraStackTiers.map((tier) => (
           <StackTier key={tier.label} tier={tier} />

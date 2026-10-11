@@ -1,11 +1,7 @@
 import Image from "next/image";
 import styles from "./styles/FactoryArt.module.css";
 
-type FactoryArtProps = {
-  placement: "experience" | "stack";
-};
-
-export function FactoryArt({ placement }: FactoryArtProps) {
+export function FactoryArt({ className }: { className: string }) {
   return (
     <Image
       src="/factory.svg"
@@ -13,7 +9,7 @@ export function FactoryArt({ placement }: FactoryArtProps) {
       aria-hidden="true"
       width={1790}
       height={1407}
-      className={`${styles.factory} ${styles[placement]}`}
+      className={`${styles.factory} ${className}`}
       data-reveal-item=""
     />
   );
