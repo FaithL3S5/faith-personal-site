@@ -19,13 +19,25 @@ function firstWaveFront(container: HTMLElement) {
 }
 
 describe("WaveBands", () => {
+  let homeMain: HTMLElement;
+
   beforeEach(() => {
     Object.defineProperty(window, "innerHeight", { value: 800, configurable: true });
     Object.defineProperty(window, "scrollY", { value: 0, configurable: true });
+    homeMain = document.createElement("main");
+    homeMain.setAttribute("data-wave-motion", "");
+    document.body.append(homeMain);
   });
 
   afterEach(() => {
     setScrollHeight(0);
+    homeMain.remove();
+  });
+
+  it("stays static on pages without wave motion, such as the error pages", () => {
+    homeMain.remove();
+    const { container } = render(<WaveBands leftClassName="left" rightClassName="right" />);
+    expect(container.querySelector("[data-wave-masked]")).toBeNull();
   });
 
   it("is empty at the top, pours in while scrolling down, and drains at the same pace going up", async () => {

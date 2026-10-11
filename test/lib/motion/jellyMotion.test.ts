@@ -1,5 +1,10 @@
 import { describe, expect, it } from "vitest";
-import { clampEyeOffset, nextBlinkDelayMs, randomEyeOffset } from "@/lib/motion/jellyMotion";
+import {
+  clampEyeOffset,
+  keepUnderSlopingTop,
+  nextBlinkDelayMs,
+  randomEyeOffset,
+} from "@/lib/motion/jellyMotion";
 
 describe("jellyMotion", () => {
   it("blinks every 3 to 6 seconds", () => {
@@ -22,6 +27,13 @@ describe("jellyMotion", () => {
     expect(clampEyeOffset(5000, 0, bounds).x).toBeCloseTo(280);
     expect(clampEyeOffset(0, 5000, bounds).y).toBeCloseTo(320);
     expect(clampEyeOffset(0, -5000, bounds).y).toBeCloseTo(-110);
+  });
+
+  it("dips the eyes as they look left, following the sloping top of the body", () => {
+    expect(keepUnderSlopingTop({ x: 0, y: -110 }, bounds, 90)).toEqual({ x: 0, y: -110 });
+    expect(keepUnderSlopingTop({ x: -280, y: -110 }, bounds, 90)).toEqual({ x: -280, y: -10 });
+    expect(keepUnderSlopingTop({ x: -560, y: 0 }, bounds, 90)).toEqual({ x: -560, y: 90 });
+    expect(keepUnderSlopingTop({ x: 200, y: -110 }, bounds, 90)).toEqual({ x: 200, y: -110 });
   });
 
   it("drifts somewhere between half and the full offset", () => {

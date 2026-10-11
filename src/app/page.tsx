@@ -12,7 +12,7 @@ export default function HomePage() {
   return (
     <>
       <HeaderWithRuler variant="home" />
-      <main id="main" tabIndex={-1} className={styles.main}>
+      <main id="main" tabIndex={-1} className={styles.main} data-wave-motion="">
         <Hero />
         <SpecStrip />
         <About />

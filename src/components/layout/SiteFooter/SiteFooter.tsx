@@ -2,7 +2,7 @@ import { FooterJelly } from "@/components/jelly/FooterJelly/FooterJelly";
 import { Arrow } from "@/components/ui/Arrow/Arrow";
 import { DotMatrix } from "@/components/ui/DotMatrix/DotMatrix";
 import { RevealGroup } from "@/components/ui/RevealGroup/RevealGroup";
-import { copyrightLine, offDutyTagline } from "@/content/footer";
+import { copyrightLine, jellyCaption, offDutyTagline } from "@/content/footer";
 import { links } from "@/content/site";
 import { Colophon } from "../Colophon/Colophon";
 import { FooterTrees } from "../FooterTrees/FooterTrees";
@@ -22,7 +22,10 @@ export function SiteFooter() {
             </p>
           </div>
           <div className={styles.jellyRow}>
-            <FooterJelly className={styles.jelly} />
+            <figure className={styles.jellyFigure}>
+              <FooterJelly className={styles.jelly} />
+              <figcaption className={styles.jellyCaption}>{jellyCaption}</figcaption>
+            </figure>
             <DotMatrix columns={10} rows={6} circleLeft={91} tone="paper" className={styles.mobileDots} />
             <DotMatrix columns={9} rows={6} circleLeft={77} tone="paper" className={styles.tabletDots} />
           </div>

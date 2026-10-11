@@ -72,8 +72,22 @@
   gap: 1rem;
 }
 
+.jellyFigure {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0;
+}
+
 .jelly {
   width: 8.25rem;
+}
+
+.jellyCaption {
+  font-size: 0.875rem;
+  font-style: italic;
+  color: var(--on-black-muted);
 }
 
 .tabletDots,

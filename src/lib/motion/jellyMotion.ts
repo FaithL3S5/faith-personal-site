@@ -16,6 +16,12 @@ export function clampEyeOffset(deltaX: number, deltaY: number, bounds: EyeBounds
   return { x: deltaX / reach, y: deltaY / reach };
 }
 
+export function keepUnderSlopingTop(offset: EyeOffset, bounds: EyeBounds, dropAtFullLeft: number): EyeOffset {
+  const leftShare = Math.min(1, Math.max(0, -offset.x) / bounds.left);
+  const highestY = -bounds.up + leftShare * (bounds.up + dropAtFullLeft);
+  return { x: offset.x, y: Math.max(offset.y, highestY) };
+}
+
 export function randomEyeOffset(maxOffset: number, random: () => number = Math.random): EyeOffset {
   const angle = random() * Math.PI * 2;
   const distance = maxOffset * (0.5 + random() * 0.5);

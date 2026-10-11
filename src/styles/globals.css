@@ -15,6 +15,16 @@ html {
   html {
     scroll-behavior: smooth;
   }
+
+  body {
+    animation: page-fade-in var(--dur-base) var(--ease-out) both;
+  }
+}
+
+@keyframes page-fade-in {
+  from {
+    opacity: 0;
+  }
 }
 
 body {

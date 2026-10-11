@@ -1,8 +1,11 @@
 "use client";
 
+import { usePathname } from "next/navigation";
 import { useEffect, useRef } from "react";
 import { prefersReducedMotion } from "@/lib/motion/reducedMotion";
 import { waveFillForScroll, waveFrontInBand } from "@/lib/motion/waveFill";
+
+export const waveMotionPageSelector = "[data-wave-motion]";
 
 type WaveBandsProps = {
   leftClassName: string;
@@ -12,12 +15,13 @@ type WaveBandsProps = {
 export function WaveBands({ leftClassName, rightClassName }: WaveBandsProps) {
   const leftBandRef = useRef<HTMLSpanElement>(null);
   const rightBandRef = useRef<HTMLSpanElement>(null);
+  const pathname = usePathname();
 
   useEffect(() => {
     const bands = [leftBandRef.current, rightBandRef.current].filter(
       (band): band is HTMLSpanElement => band !== null,
     );
-    if (prefersReducedMotion()) return;
+    if (prefersReducedMotion() || !document.querySelector(waveMotionPageSelector)) return;
 
     let frameId = 0;
 
@@ -47,7 +51,7 @@ export function WaveBands({ leftClassName, rightClassName }: WaveBandsProps) {
         band.style.removeProperty("--wave-front");
       });
     };
-  }, []);
+  }, [pathname]);
 
   return (
     <>

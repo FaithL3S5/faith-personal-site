@@ -13,6 +13,11 @@ describe("SiteFooter", () => {
     expect(channel.getAttribute("target")).toBe("_blank");
   });
 
+  it("captions Jelly in his own words", () => {
+    render(<SiteFooter />);
+    expect(screen.getByText("“i’m a coral slime”").tagName).toBe("FIGCAPTION");
+  });
+
   it("keeps the attribution links in the colophon", () => {
     render(<SiteFooter />);
 

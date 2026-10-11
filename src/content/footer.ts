@@ -31,6 +31,8 @@ export const computerAttribution = {
   note: "Converted to greyscale, cut out, and mirrored by Muhammad Fatih Fahroji.",
 } as const;
 
+export const jellyCaption = "“i’m a coral slime”";
+
 export const offDutyTagline = "Twilight of dream and insanity open my mind 🍄";
 
 export const copyrightLine = "© 2026 Muhammad Fatih Fahroji";

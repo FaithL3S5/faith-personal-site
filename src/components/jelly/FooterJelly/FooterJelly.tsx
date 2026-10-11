@@ -4,12 +4,13 @@ import { utils } from "animejs";
 import { useCallback, useRef } from "react";
 import { jellyEyesSelector, useJellyBlink } from "@/hooks/useJellyBlink";
 import { useWhileOnScreen } from "@/hooks/useWhileOnScreen";
-import { clampEyeOffset } from "@/lib/motion/jellyMotion";
+import { clampEyeOffset, keepUnderSlopingTop } from "@/lib/motion/jellyMotion";
 import { RoundEyes } from "../JellyFigure/JellyEyes";
 import { JellyFigure } from "../JellyFigure/JellyFigure";
 import { eyeCenters } from "../JellyFigure/jellyShapes";
 
 const eyeBounds = { left: 560, right: 280, up: 110, down: 320 };
+const eyeDropAtFullLeft = 90;
 const pointerFollowShare = 0.35;
 const finePointerQuery = "(pointer: fine)";
 const eyesCenter = {
@@ -35,10 +36,14 @@ export function FooterJelly({ className }: { className: string }) {
       const unitsPerPixel = viewBox.width / bounds.width;
       const pointerX = viewBox.x + (latestPointer.x - bounds.left) * unitsPerPixel;
       const pointerY = viewBox.y + (latestPointer.y - bounds.top) * unitsPerPixel;
-      const offset = clampEyeOffset(
-        (pointerX - eyesCenter.x) * pointerFollowShare,
-        (pointerY - eyesCenter.y) * pointerFollowShare,
+      const offset = keepUnderSlopingTop(
+        clampEyeOffset(
+          (pointerX - eyesCenter.x) * pointerFollowShare,
+          (pointerY - eyesCenter.y) * pointerFollowShare,
+          eyeBounds,
+        ),
         eyeBounds,
+        eyeDropAtFullLeft,
       );
       utils.set(eyes, { translateX: offset.x, translateY: offset.y });
     };
