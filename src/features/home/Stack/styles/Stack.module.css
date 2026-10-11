@@ -21,18 +21,17 @@
 
   .daily {
     display: flex;
-    flex-wrap: wrap;
     align-items: stretch;
   }
 
   .dailyTiers {
-    flex: 999 1 25rem;
+    flex: 1 1 0;
     min-width: 0;
   }
 
   .factoryCell {
     display: flex;
-    flex: 1 1 14.375rem;
+    flex: 0 1 clamp(18rem, 36vw, 21rem);
     align-items: center;
     justify-content: center;
     padding: 0.375rem 0 0.375rem 1rem;
@@ -46,11 +45,7 @@
     padding: 3rem var(--gutter);
   }
 
-  .dailyTiers {
-    flex-basis: 32.5rem;
-  }
-
   .factoryCell {
-    flex-basis: 18.75rem;
+    flex-basis: clamp(22rem, 30vw, 28rem);
   }
 }
