@@ -1,7 +1,8 @@
 "use client";
 
 import { animate } from "animejs";
-import { useRef, type PointerEvent } from "react";
+import { useCallback, useRef, type PointerEvent } from "react";
+import { useLoopWhileVisible } from "@/hooks/useLoopWhileVisible";
 import { gridStepsBetween, nearestCell } from "@/lib/motion/dotRipple";
 import { prefersReducedMotion } from "@/lib/motion/reducedMotion";
 import styles from "./styles/DotMatrix.module.css";
@@ -10,6 +11,7 @@ const cellSize = 14;
 const circleDiameter = 42;
 const rippleDurationMs = 300;
 const rippleStepDelayMs = 30;
+const waveIntervalMs = 2400;
 
 type DotMatrixProps = {
   columns: number;
@@ -19,9 +21,25 @@ type DotMatrixProps = {
   className?: string;
 };
 
+function readDots(svg: SVGSVGElement) {
+  return [...svg.querySelectorAll<SVGCircleElement>("[data-column]")].map((element) => ({
+    element,
+    cell: { column: Number(element.dataset.column), row: Number(element.dataset.row) },
+  }));
+}
+
+function playRipple(dotElements: SVGCircleElement[], stepsPerDot: number[]): number {
+  animate(dotElements, {
+    scale: [{ to: 1.8 }, { to: 1 }],
+    duration: rippleDurationMs,
+    delay: (_dot: unknown, index?: number) => stepsPerDot[index ?? 0] * rippleStepDelayMs,
+  });
+  return Math.max(...stepsPerDot) * rippleStepDelayMs + rippleDurationMs;
+}
+
 export function DotMatrix({ columns, rows, circleLeft, tone, className }: DotMatrixProps) {
   const svgRef = useRef<SVGSVGElement>(null);
-  const isRipplingRef = useRef(false);
+  const isPointerRipplingRef = useRef(false);
   const width = columns * cellSize;
   const height = rows * cellSize;
   const dots = Array.from({ length: columns * rows }, (_, index) => ({
@@ -29,9 +47,20 @@ export function DotMatrix({ columns, rows, circleLeft, tone, className }: DotMat
     row: Math.floor(index / columns),
   }));
 
-  const startRipple = (event: PointerEvent<SVGSVGElement>) => {
+  const playWave = useCallback(() => {
     const svg = svgRef.current;
-    if (!svg || isRipplingRef.current || prefersReducedMotion()) return;
+    if (!svg || isPointerRipplingRef.current) return;
+    const dotsInSvg = readDots(svg);
+    playRipple(
+      dotsInSvg.map((dot) => dot.element),
+      dotsInSvg.map((dot) => dot.cell.column),
+    );
+  }, []);
+  useLoopWhileVisible(svgRef, playWave, waveIntervalMs);
+
+  const startPointerRipple = (event: PointerEvent<SVGSVGElement>) => {
+    const svg = svgRef.current;
+    if (!svg || isPointerRipplingRef.current || prefersReducedMotion()) return;
 
     const bounds = svg.getBoundingClientRect();
     const origin = nearestCell(
@@ -41,21 +70,16 @@ export function DotMatrix({ columns, rows, circleLeft, tone, className }: DotMat
       columns,
       rows,
     );
-    const dotElements = [...svg.querySelectorAll<SVGCircleElement>("[data-column]")];
-    const stepsFromOrigin = dotElements.map((dot) =>
-      gridStepsBetween(origin, { column: Number(dot.dataset.column), row: Number(dot.dataset.row) }),
+    const dotsInSvg = readDots(svg);
+    const rippleDurationTotal = playRipple(
+      dotsInSvg.map((dot) => dot.element),
+      dotsInSvg.map((dot) => gridStepsBetween(origin, dot.cell)),
     );
-    const farthestSteps = Math.max(...stepsFromOrigin);
 
-    isRipplingRef.current = true;
-    animate(dotElements, {
-      scale: [{ to: 1.8 }, { to: 1 }],
-      duration: rippleDurationMs,
-      delay: (_dot: unknown, index?: number) => stepsFromOrigin[index ?? 0] * rippleStepDelayMs,
-    });
+    isPointerRipplingRef.current = true;
     setTimeout(() => {
-      isRipplingRef.current = false;
-    }, farthestSteps * rippleStepDelayMs + rippleDurationMs);
+      isPointerRipplingRef.current = false;
+    }, rippleDurationTotal);
   };
 
   return (
@@ -65,8 +89,8 @@ export function DotMatrix({ columns, rows, circleLeft, tone, className }: DotMat
       viewBox={`0 0 ${width} ${height}`}
       className={[styles.matrix, styles[tone], className].filter(Boolean).join(" ")}
       style={{ width: `${width / 16}rem`, height: `${height / 16}rem` }}
-      onPointerEnter={(event) => event.pointerType === "mouse" && startRipple(event)}
-      onPointerDown={(event) => event.pointerType !== "mouse" && startRipple(event)}
+      onPointerEnter={(event) => event.pointerType === "mouse" && startPointerRipple(event)}
+      onPointerDown={(event) => event.pointerType !== "mouse" && startPointerRipple(event)}
     >
       <circle
         className={styles.circle}
