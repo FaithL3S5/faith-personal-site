@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { BrushCircleSprite } from "@/components/ui/BrushCircle/BrushCircle";
-import { heroParagraph, isHeadlineGagEnabled, siteTitle, siteUrl } from "@/content/site";
+import { isHeadlineGagEnabled, siteDescription, siteTitle, siteUrl } from "@/content/site";
 import { headlineGagScript } from "@/lib/motion/headlineGag";
 import { PaperArea } from "@/components/layout/PaperArea/PaperArea";
 import { SiteFooter } from "@/components/layout/SiteFooter/SiteFooter";
@@ -11,10 +11,10 @@ import "@/styles/globals.css";
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: siteTitle,
-  description: heroParagraph,
+  description: siteDescription,
   openGraph: {
     title: siteTitle,
-    description: heroParagraph,
+    description: siteDescription,
     url: "/",
     siteName: siteTitle,
     type: "website",
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: siteTitle,
-    description: heroParagraph,
+    description: siteDescription,
   },
 };
 

@@ -13,6 +13,10 @@
   white-space: nowrap;
 }
 
+.glyphs::before {
+  content: attr(data-text);
+}
+
 :global(html[data-headline-gag]) .gagLayer {
   display: block;
 }

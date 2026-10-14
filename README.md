@@ -2,7 +2,7 @@
 
 Hello everyone, this is Faith. Welcome to my personal site's source. I'm a full-stack developer from Jakarta, Indonesia. If you're curious about the round thing with bunny-like ears all over the site, that's J三LLY, my mascot.
 
-You can see it live at [faith-personal-site.vercel.app](https://faith-personal-site.vercel.app)
+You can see it live at [faith.l3s5.dev](https://faith.l3s5.dev)
 
 It's a single page (`/`) with a 404 page and an error page
 

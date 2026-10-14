@@ -5,7 +5,8 @@ import { HeroHeadline } from "@/features/home/HeroHeadline/HeroHeadline";
 import { headlineGagAttribute } from "@/lib/motion/headlineGag";
 
 function gagText(container: HTMLElement) {
-  return container.querySelector("[aria-hidden='true']")?.textContent;
+  const layer = container.querySelector("[aria-hidden='true']");
+  return [...(layer?.querySelectorAll("[data-text]") ?? [])].map((glyphs) => glyphs.getAttribute("data-text")).join("");
 }
 
 describe("HeroHeadline", () => {
@@ -21,6 +22,13 @@ describe("HeroHeadline", () => {
   it("keeps the real headline as the accessible heading", () => {
     render(<HeroHeadline className="title" />);
     expect(screen.getByRole("heading", { level: 1, name: "FULL-STACK DEVELOPER" })).toBeTruthy();
+  });
+
+  it("keeps the gag letters out of the page text so crawlers never read STUCK", () => {
+    document.documentElement.setAttribute(headlineGagAttribute, "");
+    const { container } = render(<HeroHeadline className="title" />);
+    expect(container.querySelector("[aria-hidden='true']")?.textContent).toBe("");
+    expect(container.textContent).not.toContain("STUCK");
   });
 
   it("corrects FULL-STUCK to FULL-STACK on the armed load, then hands back to the real text", () => {

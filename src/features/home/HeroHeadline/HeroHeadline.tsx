@@ -36,13 +36,13 @@ export function HeroHeadline({ className }: { className: string }) {
       {isHeadlineGagEnabled && (
         <span aria-hidden="true" className={styles.gagLayer}>
           <span key={gagStage} className={styles.line}>
-            {beforeCursor}
+            <span className={styles.glyphs} data-text={beforeCursor} />
             {isCursorVisible && (
               <span className={gagStage === "corrected" ? `${styles.cursor} ${styles.blinking}` : styles.cursor} />
             )}
-            {afterCursor}
+            <span className={styles.glyphs} data-text={afterCursor} />
           </span>
-          <span className={styles.line}>DEVELOPER</span>
+          <span className={`${styles.line} ${styles.glyphs}`} data-text="DEVELOPER" />
         </span>
       )}
     </h1>

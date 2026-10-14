@@ -1,6 +1,9 @@
-export const siteUrl = "https://faith-personal-site.vercel.app";
+export const siteUrl = "https://faith.l3s5.dev";
 
-export const siteTitle = "Faith, full-stack developer";
+export const siteTitle = "Muhammad Fatih Fahroji (Faith), full-stack developer";
+
+export const siteDescription =
+  "Muhammad Fatih Fahroji (Faith) builds onboarding and video call systems for banking, end to end: Spring Boot and NestJS services, Next.js with Chakra UI on the front";
 
 export type WideScreenWave = "drawn" | "pattern";
 
@@ -13,7 +16,7 @@ export const heroParagraph =
 
 export const fullName = "Muhammad Fatih Fahroji";
 
-export const email = "fatihfahroji10@gmail.com";
+export const email = "hello@fatihfahroji.com";
 
 export const links = {
   coordinates: "https://maps.app.goo.gl/4XjYbE11Ut6FL3DL9",
