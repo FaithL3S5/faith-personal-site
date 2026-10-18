@@ -18,6 +18,8 @@ export const fullName = "Muhammad Fatih Fahroji";
 
 export const email = "hello@fatihfahroji.com";
 
+export const jellyLinkLabel = "Play with Jelly";
+
 export const links = {
   coordinates: "https://maps.app.goo.gl/4XjYbE11Ut6FL3DL9",
   resume:

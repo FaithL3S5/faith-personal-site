@@ -16,6 +16,7 @@
 
 .nav,
 .resume,
+.jellyLink,
 .jelly {
   display: none;
 }
@@ -75,8 +76,12 @@
     text-transform: uppercase;
   }
 
+  .jellyLink,
   .jelly {
     display: block;
+  }
+
+  .jelly {
     width: 3.875rem;
   }
 }

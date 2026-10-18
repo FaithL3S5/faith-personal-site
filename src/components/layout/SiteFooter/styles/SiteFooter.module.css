@@ -60,6 +60,7 @@
   letter-spacing: 0.04em;
 }
 
+.nameRow,
 .jellyRow {
   display: flex;
   align-self: stretch;
@@ -69,6 +70,7 @@
 }
 
 .jellyFigure {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -76,14 +78,48 @@
   margin: 0;
 }
 
+.jellyBubble {
+  position: absolute;
+  top: 1rem;
+  right: -7rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 0.5rem 0.5rem 0.5rem 0rem;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-accent);
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+
+.jellyBubble::after {
+  content: "";
+  position: absolute;
+  bottom: -0.75rem;
+  left: 0rem;
+  border-style: solid;
+  border-width: 0.75rem 0.5rem 0rem 0rem;
+  border-color: var(--paper) transparent transparent transparent;
+}
+
 .jelly {
   width: 8.25rem;
+}
+
+.jellyLink {
+  text-decoration: none;
 }
 
 .jellyCaption {
   font-size: 0.875rem;
   font-style: italic;
   color: var(--on-black-muted);
+}
+
+.jellyLink:hover .jellyBubble {
+  color: var(--bright-red);
 }
 
 .tabletDots,
@@ -147,7 +183,7 @@
 
   .columns {
     display: grid;
-    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    grid-template-columns: minmax(max-content, 5fr) minmax(0, 7fr);
     grid-template-areas:
       "identity colophon"
       "offDuty colophon";
@@ -169,10 +205,6 @@
     grid-area: colophon;
   }
 
-  .mascotName {
-    font-size: 3.75rem;
-  }
-
   .jelly {
     width: 8.75rem;
   }
@@ -183,6 +215,12 @@
 
   .tabletDots {
     display: block;
+  }
+}
+
+@media (min-width: 50rem) {
+  .mascotName {
+    font-size: 3.75rem;
   }
 }
 

@@ -2,7 +2,7 @@
 
 import { HeaderJelly } from "@/components/jelly/HeaderJelly/HeaderJelly";
 import { PillLink } from "@/components/ui/Pill/PillLink";
-import { links } from "@/content/site";
+import { jellyLinkLabel, links } from "@/content/site";
 import { useMenu } from "@/hooks/useMenu";
 import type { PageVariant } from "@/lib/sectionHref";
 import { MenuButton } from "../MenuButton/MenuButton";
@@ -38,10 +38,21 @@ export function SiteHeader({ variant }: { variant: PageVariant }) {
         >
           Resume
         </PillLink>
-        <HeaderJelly className={styles.jelly} />
-        <MenuButton isOpen={menu.isOpen} controlsId={menuPanelId} onToggle={menu.toggle} />
+        <a href="/jelly" className={styles.jellyLink} aria-label={jellyLinkLabel}>
+          <HeaderJelly className={styles.jelly} />
+        </a>
+        <MenuButton
+          isOpen={menu.isOpen}
+          controlsId={menuPanelId}
+          onToggle={menu.toggle}
+        />
       </div>
-      <MenuPanel id={menuPanelId} variant={variant} isOpen={menu.isOpen} onNavigate={menu.close} />
+      <MenuPanel
+        id={menuPanelId}
+        variant={variant}
+        isOpen={menu.isOpen}
+        onNavigate={menu.close}
+      />
     </header>
   );
 }

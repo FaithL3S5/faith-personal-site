@@ -84,11 +84,9 @@
 }
 
 .colophon .row {
+  flex-direction: column;
+  gap: 0.25rem;
   padding: 0.6875rem 0;
-}
-
-.colophon .row:nth-last-child(-n + 2) {
-  gap: 2rem;
 }
 
 .colophon .label {
@@ -97,5 +95,21 @@
 
 .colophon .value {
   font-weight: 400;
+  text-align: left;
   text-wrap: pretty;
+}
+
+@media (min-width: 75rem) {
+  .colophon .row {
+    flex-direction: row;
+    gap: 1rem;
+  }
+
+  .colophon .row:nth-last-child(-n + 2) {
+    gap: 2rem;
+  }
+
+  .colophon .value {
+    text-align: right;
+  }
 }

@@ -28,6 +28,14 @@ describe("SiteHeader", () => {
     expect(screen.getByRole("img", { name: "Jelly, the mascot, looking around" })).toBeTruthy();
   });
 
+  it("links Jelly to his playground", () => {
+    render(<SiteHeader variant="home" />);
+
+    const playground = screen.getByRole("link", { name: "Play with Jelly" });
+    expect(playground.getAttribute("href")).toBe("/jelly");
+    expect(within(playground).getByRole("img", { name: "Jelly, the mascot, looking around" })).toBeTruthy();
+  });
+
   it("downloads the resume in a new tab", () => {
     render(<SiteHeader variant="home" />);
 
