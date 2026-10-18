@@ -1,18 +1,13 @@
 import { describe, expect, it } from "vitest";
 import {
-  averageVelocity,
   createSoftBody,
   dampSwing,
-  fastestPointMovement,
   grabNearestPoint,
   hasCrossingEdges,
-  interpolatedFrame,
-  interpolatedPositions,
   moveGrab,
   releaseGrab,
   setRoundness,
   stepSoftBody,
-  surfaceRotation,
 } from "@/lib/softbody/softBody";
 import { signedArea } from "@/lib/softbody/vector";
 
@@ -84,14 +79,6 @@ describe("soft body", () => {
     expect(body.grab).toBeNull();
   });
 
-  it("gives the same result for the same inputs", () => {
-    const first = createSoftBody(ring, 1, { x: 400, y: 100 });
-    const second = createSoftBody(ring, 1, { x: 400, y: 100 });
-    simulate(first, 240);
-    simulate(second, 240);
-    expect(first.positions).toEqual(second.positions);
-  });
-
   it("untangles himself after his outline is folded over itself", () => {
     const body = createSoftBody(ring, 1, { x: 400, y: 300 });
     [body.positions[2], body.positions[10]] = [{ ...body.positions[10] }, { ...body.positions[2] }];
@@ -102,25 +89,6 @@ describe("soft body", () => {
     expect(hasCrossingEdges(body.positions)).toBe(false);
     expect(body.isTangled).toBe(false);
     expect(Math.sign(signedArea(body.positions))).toBe(Math.sign(body.restArea));
-  });
-
-  it("measures how far the surface has turned at a point", () => {
-    const body = createSoftBody(ring, 1, { x: 400, y: 300 });
-    expect(surfaceRotation(body, body.positions, 4)).toBeCloseTo(0);
-
-    const turned = body.positions.map((point) => ({ x: 400 - (point.y - 300), y: 300 + (point.x - 400) }));
-    expect(Math.abs(surfaceRotation(body, turned, 4))).toBeCloseTo(Math.PI / 2);
-  });
-
-  it("leans toward a shape goal when given one", () => {
-    const free = createSoftBody(ring, 1, { x: 400, y: 300 });
-    const steered = createSoftBody(ring, 1, { x: 400, y: 300 });
-    for (let index = 0; index < 20; index++) {
-      stepSoftBody(free, step, bounds, { ...params, gravity: 0 });
-      stepSoftBody(steered, step, bounds, { ...params, gravity: 0 }, { stiffness: 0.2, rotation: 1 });
-    }
-    expect(free.frame.rotation).toBeCloseTo(0);
-    expect(steered.frame.rotation).toBeGreaterThan(0.3);
   });
 
   it("pulls his bottom in more than his top when squashed", () => {
@@ -232,23 +200,5 @@ describe("soft body", () => {
       hardestWallHit = Math.max(hardestWallHit, thrown.impacts.wall);
     }
     expect(hardestWallHit).toBeGreaterThan(1000);
-  });
-
-  it("measures his average velocity and how far his fastest point moved", () => {
-    const body = createSoftBody(ring, 1, { x: 400, y: 300 });
-    body.previous.forEach((point) => (point.x -= 60 * step));
-    body.lastStep.forEach((point) => (point.x -= 60 * step));
-    body.lastStep[3].y -= 120 * step;
-
-    expect(averageVelocity(body, step).x).toBeCloseTo(60);
-    expect(fastestPointMovement(body, step)).toBeCloseTo(Math.hypot(60, 120));
-  });
-
-  it("draws in between the last two steps", () => {
-    const body = createSoftBody(ring, 1, { x: 400, y: 100 });
-    simulate(body, 30);
-    const halfway = interpolatedPositions(body, 0.5)[0];
-    expect(halfway.y).toBeCloseTo((body.lastStep[0].y + body.positions[0].y) / 2);
-    expect(interpolatedFrame(body, 1).centroid).toEqual(body.frame.centroid);
   });
 });

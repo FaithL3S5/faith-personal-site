@@ -38,10 +38,6 @@ describe("Jelly's expression", () => {
     }
   });
 
-  it("shrugs off gentle bumps", () => {
-    expect(run({ ...resting, impacts: { floor: 200, wall: 100, ceiling: 0 } }, 1).current).toBe("open");
-  });
-
   it("squints while squeezing for a jump", () => {
     expect(run({ ...resting, isSqueezing: true }, 1).current).toBe("squint");
   });

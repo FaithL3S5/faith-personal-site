@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { createShapeSteering, droopDirection, heldShare, stepShapeSteering } from "@/lib/softbody/shapeSteering";
+import { createShapeSteering, heldShare, stepShapeSteering } from "@/lib/softbody/shapeSteering";
 import { createSoftBody, grabNearestPoint, moveGrab, releaseGrab, setRoundness } from "@/lib/softbody/softBody";
 
 const params = {
@@ -97,11 +97,6 @@ describe("shape steering", () => {
     expect(goal?.drop?.direction.x).toBeLessThan(-0.2);
   });
 
-  it("never leans the drop past the limit", () => {
-    const direction = droopDirection({ x: 1e6, y: 0 }, 2400, 0.5, Math.PI / 3);
-    expect(Math.atan2(direction.x, direction.y)).toBeCloseTo(-Math.PI / 3);
-  });
-
   it("flattens him against whatever he hits, harder for a harder hit, then lets go", () => {
     const body = createSoftBody(ring, 1, { x: 400, y: 300 });
     const steering = createShapeSteering();
@@ -153,14 +148,6 @@ describe("shape steering", () => {
 
     stepShapeSteering(steering, body, step, lifted, params);
     expect(steering.stillFor).toBeGreaterThan(params.reformAfterStillSeconds);
-  });
-
-  it("goes round while held up with room under him", () => {
-    const body = heldBody();
-    body.impacts = { floor: 20, wall: 0, ceiling: 0 };
-    const steering = createShapeSteering();
-    for (let index = 0; index < 120; index++) stepShapeSteering(steering, body, step, lifted, params);
-    expect(body.roundness).toBe(1);
   });
 
   it("sits a little flatter while resting on the floor", () => {

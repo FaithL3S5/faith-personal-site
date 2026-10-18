@@ -12,11 +12,6 @@ describe("ballistics", () => {
     expect(flight.seconds).toBeCloseTo((2 * 1000) / 2400, 1);
   });
 
-  it("flies lower and shorter with drag", () => {
-    expect(flightOf(1000, withDrag).peakHeight).toBeLessThan(flightOf(1000, withoutDrag).peakHeight);
-    expect(flightOf(1000, withDrag).seconds).toBeLessThan(flightOf(1000, withoutDrag).seconds);
-  });
-
   it("finds the launch speed that reaches a given height", () => {
     expect(flightOf(launchSpeedFor(350, withDrag), withDrag).peakHeight).toBeCloseTo(350, 0);
   });

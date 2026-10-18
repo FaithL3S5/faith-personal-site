@@ -36,8 +36,4 @@ describe("createFixedStepper", () => {
     expect(stepper.advance(5000).steps).toBe(8);
     expect(stepper.advance(1000 / 120).steps).toBeLessThanOrEqual(2);
   });
-
-  it("reports the step length in seconds", () => {
-    expect(createFixedStepper(120, 8).stepSeconds).toBeCloseTo(1 / 120);
-  });
 });

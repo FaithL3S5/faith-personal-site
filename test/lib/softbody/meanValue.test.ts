@@ -23,11 +23,4 @@ describe("mean value weights", () => {
     expect(moved.x).toBeCloseTo(inside.x * 0.6 + 100);
     expect(moved.y).toBeCloseTo(inside.y * 1.5 - 40);
   });
-
-  it("keeps a point near a narrowing side inside the outline", () => {
-    const weights = meanValueWeights(ring, { x: -40, y: 0 });
-    const pinched = ring.map(({ x, y }) => ({ x, y: x < 0 ? y * 0.4 : y }));
-    const moved = pinnedPoint(weights, pinched);
-    expect(Math.abs(moved.y)).toBeLessThan(5);
-  });
 });

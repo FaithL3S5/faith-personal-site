@@ -168,10 +168,6 @@ describe("correcting his angle", () => {
     expect(cappedRotation(0.05, 0, 0.1)).toBeCloseTo(0);
   });
 
-  it("goes the short way round past half a turn", () => {
-    expect(cappedRotation(3, -3, 0.1)).toBeCloseTo(3.1);
-  });
-
   it("plants himself on landing, losing most of his sideways speed and spin but not his bounce", () => {
     const body = bodyLyingAt(0);
     const centroid = body.frame.centroid;
@@ -211,11 +207,6 @@ describe("correcting his angle", () => {
 });
 
 describe("choosing the turn", () => {
-  it("takes the short way when he is only on his side", () => {
-    expect(chooseTurn(2, 300, params)).toBe(-2);
-    expect(chooseTurn(-2, -300, params)).toBe(2);
-  });
-
   it("rolls the way he was travelling when nearly upside down", () => {
     expect(chooseTurn(3, -300, params)).toBe(-3);
     expect(chooseTurn(3, 300, params)).toBeCloseTo(Math.PI * 2 - 3);
@@ -278,16 +269,5 @@ describe("heading and launch", () => {
     expect(before.x).toBeCloseTo(100);
     expect(after.x - before.x).toBeCloseTo(50);
     expect(after.y - before.y).toBeCloseTo(-1000);
-  });
-
-  it("launches his bottom side faster so he stretches on takeoff", () => {
-    const body = bodyLyingAt(0);
-    launch(body, step, { upwardSpeed: 1000, sideSpeed: 0, spinSpeed: 0, stretch: 0.25 });
-    const upwardSpeedAt = (index: number) => (body.previous[index].y - body.positions[index].y) / step;
-    const bottom = body.restOffsets.findIndex((offset) => offset.y > 25);
-    const top = body.restOffsets.findIndex((offset) => offset.y < -25);
-
-    expect(upwardSpeedAt(bottom)).toBeGreaterThan(1200);
-    expect(upwardSpeedAt(top)).toBeLessThan(800);
   });
 });

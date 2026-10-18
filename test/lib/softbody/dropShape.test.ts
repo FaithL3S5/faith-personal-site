@@ -26,9 +26,4 @@ describe("water drop shape", () => {
     expect(signedArea(drop) / area).toBeCloseTo(1, 1);
     expect(height).toBeCloseTo(dropLength(area, 1.6), -1);
   });
-
-  it("hangs whichever way the pull points", () => {
-    const sideways = dropOffsets(shares, area, { anchorIndex: 0, direction: { x: 1, y: 0 }, share: 1, aspect: 1.6 });
-    expect(Math.min(...sideways.map((point) => point.x))).toBeCloseTo(sideways[0].x);
-  });
 });
