@@ -1,4 +1,4 @@
-import { eyeRadius, squintStrokes, type EyeCenter } from "./jellyShapes";
+import { closedEyeLines, eyeRadius, squintStrokes, type EyeCenter } from "./jellyShapes";
 import styles from "./styles/JellyFigure.module.css";
 
 function RoundEye({ x, y }: EyeCenter) {
@@ -26,6 +26,16 @@ export function SquintEyes() {
     <g className={styles.eyes} data-jelly-eyes="">
       {squintStrokes.map((points) => (
         <polyline key={points} points={points} fill="none" stroke="#141414" strokeWidth={50} />
+      ))}
+    </g>
+  );
+}
+
+export function ClosedEyes() {
+  return (
+    <g className={styles.eyes} data-jelly-eyes="">
+      {closedEyeLines.map((line) => (
+        <line key={line.x1} {...line} fill="none" stroke="#141414" strokeWidth={50} />
       ))}
     </g>
   );

@@ -45,6 +45,11 @@ export const squintStrokes = [
   "1143.8 1236.36 925.8 1308.36 1143.8 1406.36",
 ];
 
+export const closedEyeLines = [
+  { x1: 939.63, y1: 1312.82, x2: 1094.26, y2: 1312.82 },
+  { x1: 429.41, y1: 1321.36, x2: 584.04, y2: 1321.36 },
+];
+
 export const eyeRadius = 41.87;
 
 export const viewBoxes = {

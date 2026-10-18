@@ -1,0 +1,16 @@
+.squint,
+.closed,
+.brow {
+  display: none;
+}
+
+.face[data-expression="squint"] .open,
+.face[data-expression="closed"] .open {
+  display: none;
+}
+
+.face[data-expression="squint"] .squint,
+.face[data-expression="closed"] .closed,
+.face[data-expression="held"] .brow {
+  display: inline;
+}
