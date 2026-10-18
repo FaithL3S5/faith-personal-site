@@ -1,3 +1,4 @@
+import { Analytics } from "@vercel/analytics/next";
 import type { Metadata, Viewport } from "next";
 import { BrushCircleSprite } from "@/components/ui/BrushCircle/BrushCircle";
 import { isHeadlineGagEnabled, siteDescription, siteTitle, siteUrl } from "@/content/site";
@@ -41,6 +42,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <BrushCircleSprite />
         <PaperArea>{children}</PaperArea>
         <SiteFooter />
+        <Analytics />
       </body>
     </html>
   );
