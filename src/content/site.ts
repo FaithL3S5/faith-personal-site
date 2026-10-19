@@ -23,7 +23,7 @@ export const jellyLinkLabel = "Play with Jelly";
 export const links = {
   coordinates: "https://maps.app.goo.gl/4XjYbE11Ut6FL3DL9",
   resume:
-    "https://drive.google.com/uc?export=download&id=1y4Cqwtzc7NCf21R6XhsG94AuGC_oWisu",
+    "https://drive.google.com/uc?export=download&id=1FiG6L6C9e6aLJd4LB2qn0VnG-gSNKshO",
   deck: "https://drive.google.com/file/d/1Ofjelh_GeSPS5zti7SF-Jb4Hi6YE8lyh/view?usp=sharing",
   linkedIn: "https://linkedin.com/in/muhammad-fatih-fahroji",
   gitHub: "https://github.com/FaithL3S5",
